@@ -1,5 +1,7 @@
 <script setup lang="ts">
- import { defineProps } from 'vue';
+ import { defineProps,ref } from 'vue';
+ const selectedRenkIndex = ref(0); // Başlangıçta seçili olan renk index'i
+ const lastSelectedRenkIndex = ref(0);
 
 const props = defineProps(['product']);
 const calculateIndirimliFiyat = (fiyat, indirimOrani) => {
@@ -19,6 +21,23 @@ const getStyleForEskiFiyat = (indirimOrani) => {
         'text-decoration': 'line-through',
       }
     : {};
+
+};
+
+
+const getImgUrl = (product: { urunKodu: string; renk: string[]}): string => {
+      return `src/assets/${product.urunKodu}${product.renk[1]}1.webp`;
+    };
+
+    const getRenkImgUrl = (urunKodu, renk) => {
+  return `src/assets/${urunKodu}${renk}1.webp`;
+};
+
+
+const handleMouseOver = (index: number): void => {
+  lastSelectedRenkIndex.value = index;
+  console.log(`Mouse over: ${index}`);
+
 };
 </script>
 
@@ -30,7 +49,8 @@ const getStyleForEskiFiyat = (indirimOrani) => {
           <img src="assets/kupon.webp" alt="">
         </div>
         <div class="resimurun">
-          <img class="imgresim" src="src/assets/griesofman1.webp" alt="">
+          <img class="imgresim" :src="getImgUrl(product)">
+
         </div>
       </div>
       <div class="kargoindirimdurum">
@@ -60,25 +80,14 @@ const getStyleForEskiFiyat = (indirimOrani) => {
         <div class="ucuncufiyat" />
       </div>
       <div class="renkresimler">
-        <div class="renkresimconteiner">
-          <Button class="renkresim">
-            <img class="icresim" src="src/assets/griesofman1.webp" alt="">
-          </Button>
-          <div class="seciliitem" />
-        </div>
-        <div class="renkresimconteiner">
-          <Button class="renkresim">
-            <img class="icresim" src="src/assets/siyahesofman3.webp" alt="">
-          </Button>
-          <div class="seciliitem" style="visibility: hidden;" />
-        </div>
-        <div class="renkresimconteiner">
-          <Button class="renkresim">
-            <img class="icresim" src="src/assets/bejesofman1.webp" alt="">
-          </Button>
-          <div class="seciliitem" style="visibility: hidden;" />
-        </div>
-      </div>
+    <div v-for="(renk, index) in product.renk" :key="index" class="renkresimconteiner">
+      <Button class="renkresim"  @mouseover="handleMouseOver(index, renk)">
+        <img class="icresim" :src="getRenkImgUrl(product.urunKodu, renk)" alt="">
+      </Button>
+      <div class="seciliitem" :style="{ visibility: index === lastSelectedRenkIndex ? 'visible' : 'hidden' }" />
+    </div>
+  </div>
+
     </div>
   </div>
 </template>
