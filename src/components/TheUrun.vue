@@ -1,6 +1,6 @@
 <script setup lang="ts">
  import { defineProps,ref } from 'vue';
- const selectedRenkIndex = ref(0); // Başlangıçta seçili olan renk index'i
+ //const selectedRenkIndex = ref(0); // Başlangıçta seçili olan renk index'i
  const lastSelectedRenkIndex = ref(0);
 
 const props = defineProps(['product']);
@@ -25,19 +25,17 @@ const getStyleForEskiFiyat = (indirimOrani) => {
 };
 
 
-const getImgUrl = (product: { urunKodu: string; renk: string[]}): string => {
-      return `src/assets/${product.urunKodu}${product.renk[1]}1.webp`;
-    };
-
-    const getRenkImgUrl = (urunKodu, renk) => {
-  return `src/assets/${urunKodu}${renk}1.webp`;
+const getImgUrl = (product: { urunKodu: string; renk: string[] }): string => {
+  return `src/assets/${product.urunKodu}${product.renk[lastSelectedRenkIndex.value]}1.webp`;
 };
 
+const getRenkImgUrl = (urunKodu: string, renk: string): string => {
+  return `src/assets/${urunKodu}${renk}1.webp`;
+};
 
 const handleMouseOver = (index: number): void => {
   lastSelectedRenkIndex.value = index;
   console.log(`Mouse over: ${index}`);
-
 };
 </script>
 
@@ -80,16 +78,16 @@ const handleMouseOver = (index: number): void => {
         <div class="ucuncufiyat" />
       </div>
       <div class="renkresimler">
-    <div v-for="(renk, index) in product.renk" :key="index" class="renkresimconteiner">
-      <Button class="renkresim"  @mouseover="handleMouseOver(index, renk)">
-        <img class="icresim" :src="getRenkImgUrl(product.urunKodu, renk)" alt="">
-      </Button>
-      <div class="seciliitem" :style="{ visibility: index === lastSelectedRenkIndex ? 'visible' : 'hidden' }" />
+        <div v-for="(renk, index) in product.renk" :key="index" class="renkresimconteiner">
+          <Button class="renkresim" @mouseover="handleMouseOver(index)">
+            <img class="icresim" :src="getRenkImgUrl(product.urunKodu, renk)" alt="">
+          </Button>
+          <div class="seciliitem" :style="{ visibility: index === lastSelectedRenkIndex ? 'visible' : 'hidden' }" />
+        </div>
+      </div>
     </div>
-  </div>
 
     </div>
-  </div>
 </template>
 
 <style>
