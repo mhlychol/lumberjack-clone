@@ -1,4 +1,21 @@
+<script lang="ts">
+export default {
+  props: {
+    selectedProduct: {
+      type: Object,
+      required: true,
+    },
+  },
+};
+</script>
+
 <template>
+   <div v-if="selectedProduct">
+      <h3>{{ selectedProduct.urunKodu }}</h3>
+      <p>marka: {{ selectedProduct.marka }}</p>
+      <p>Model: {{ selectedProduct.model }}</p>
+      <p>urunAciklamasi: {{ selectedProduct.urunAciklamasi }}</p>
+    </div>
   <div class="Urundetayconteiner">
     <div class="Urunconteiner">
       <div class="resimler">
@@ -19,11 +36,11 @@
       </div>
       <div class="Urundetaybilgiler">
         <div class="model">
-          M-CT107 BASIC JOGGER 3FX Gri Erkek Eşofman Altı
+
         </div>
         <div class="Urundetaykargoindirimdurum">
           <div class="Urundetayindirimdurum">
-            -%20
+            -%
           </div>
           <div class="Urundetaykargodurum">
             Kargo Bedava

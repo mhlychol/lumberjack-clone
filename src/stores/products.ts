@@ -34,6 +34,40 @@ export const useProductsStore = defineStore({
         console.error('Hata:', error);
       }
     },
+    filterProducts(filterOptions: { yas?: string; cinsiyet?: string; ustTur?: string; altTur?: string }) {
+      // Filtreleme seçeneklerine göre ürünleri filtrele
+      this.filteredProducts = this.products.filter(product => {
+        return (
+          (!filterOptions.yas || product.yas === filterOptions.yas) &&
+          (!filterOptions.cinsiyet || product.cinsiyet === filterOptions.cinsiyet) &&
+          (!filterOptions.ustTur || product.ustTur === filterOptions.ustTur) &&
+          (!filterOptions.altTur || product.altTur === filterOptions.altTur)
+        );
+      });
+    },
+    setProductByCode(urunKodu: string) {
+      // Ürün koduna göre eşleşen ürünü bul ve sakla
+      const selectedProduct = this.products.find(product => product.urunKodu === urunKodu);
+      if (selectedProduct) {
+        this.filteredProducts = [selectedProduct];
+      } else {
+        // Ürün bulunamazsa, filteredProducts'i boşaltabilir veya başka bir işlem yapabilirsiniz.
+        this.filteredProducts = [];
+      }
+    },
+  },
+});
+export const useProductStore2 = defineStore('Product', {
+  state: () => ({
+    selectedProduct: {
+      urunKodu: '',
+      renk: '',
+    },
+  }),
 
+  actions: {
+    setSelectedProduct(product) {
+      this.selectedProduct = product;
+    },
   },
 });

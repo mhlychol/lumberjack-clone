@@ -1,7 +1,8 @@
 <script setup lang="ts">
- import { defineProps,ref } from 'vue';
+import { defineProps,ref } from 'vue';
  //const selectedRenkIndex = ref(0); // Başlangıçta seçili olan renk index'i
  const lastSelectedRenkIndex = ref(0);
+ import { useRouter } from 'vue-router';
 
 const props = defineProps(['product']);
 const calculateIndirimliFiyat = (fiyat, indirimOrani) => {
@@ -37,6 +38,21 @@ const handleMouseOver = (index: number): void => {
   lastSelectedRenkIndex.value = index;
   console.log(`Mouse over: ${index}`);
 };
+
+const router = useRouter();
+
+const handleImageClick = ()  => {
+  // UrunListePage.vue sayfasına filtre seçeneklerini gönder
+
+  router.push({
+    path: 'Urundetay', // veya path: '/Urundetay' şeklinde de kullanabilirsiniz
+    query: {
+      urunKodu: props.product.urunKodu,
+      renk: props.product.renk[lastSelectedRenkIndex.value],
+      // Diğer ürün bilgilerini ekleyebilirsiniz
+    },
+  });
+};
 </script>
 
 <template>
@@ -47,13 +63,12 @@ const handleMouseOver = (index: number): void => {
           <img src="assets/kupon.webp" alt="">
         </div>
         <div class="resimurun">
-          <img class="imgresim" :src="getImgUrl(product)">
-
+          <img class="imgresim" :src="getImgUrl(product)" @click="handleImageClick()">
         </div>
       </div>
       <div class="kargoindirimdurum">
-        <div class="indirimdurum"  v-if="product.indirimOrani !== 0">
-          -%{{ product.indirimOrani }}
+        <div class="indirimdurum"  v-if="product.indirimOrani > 0">
+          -{{ product.indirimOrani }}%
         </div>
         <div class="kargodurum" v-if="product.kargo === 'Ücretsiz'">
           Kargo Bedava
@@ -63,7 +78,7 @@ const handleMouseOver = (index: number): void => {
         {{ product.urunAciklamasi }}
       </div>
       <div class="fiyat">
-        <div class="fiyatyazi" v-if="product.indirimOrani !== 0">
+        <div class="fiyatyazi" v-if="product.indirimOrani > 0">
           Son 30 Günün En Düşük Fiyatı
         </div>
         <div class="eskisonfiyat">
