@@ -32,9 +32,10 @@ export default {
 </script>
 
 <template>
+ <!-- <div class="menumenumenu">  </div>-->
   <div class="ana-bolum">
     <div class="kutu1">
-      <img src="src/assets/component 1/kargo-bedava-web.webp" style="height: 100%;">
+      <img class="kutu1resim" src="src/assets/component 1/kargo-bedava-web.webp" style="height: 100%;">
     </div>
 
     <div class="kutu2">
@@ -159,6 +160,19 @@ export default {
 </template>
 
 <style scoped>
+.menumenumenu{
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  width: 1000px;
+  height: 250px;
+  z-index: 1000;
+
+}
 .ana-bolum {
   height: 200px;
   display: flex;
@@ -169,10 +183,13 @@ export default {
 
 .kutu1 {
   height: 59px;
-  width: 100%;
   background-color: #c8a51c;
+  max-width: 100%;
 }
+.kutu1resim{
+  max-width: 100%;
 
+}
 .kutu2 {
   height: 141px;
   width: 100%;
