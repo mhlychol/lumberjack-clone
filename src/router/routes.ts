@@ -3,10 +3,10 @@ import { RouteRecordRaw } from 'vue-router';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('layouts/AnasayfaLayout.vue'),
     children: [
-      { path: 'anasayfa', component: () => import('pages/AnasayfaPage.vue') },
+      { path: '', component: () => import('pages/AnasayfaPage.vue') },
       { path: '/Urunler', component: () => import('pages/UrunlistePage.vue') },
+      {  path: '/Urundetay', component: () => import('pages/UrunDetayPage.vue') },
     ],
   },
 
