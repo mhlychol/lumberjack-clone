@@ -2,7 +2,6 @@
 import { defineStore } from 'pinia';
 import apiClient from 'src/services/AxiosPiniaService';
 
-// Ürünün API'den alınan veri tipini temsil eden interface
 interface Product {
   urunKodu: string;
   urunAciklamasi: string;
@@ -22,16 +21,19 @@ interface Product {
 export const useProductsStore = defineStore({
   id: 'products',
   state: () => ({
-    products: [] as Product[], // products state'inin türü olarak Product[] kullanıldı
+    products: [] as Product[],
+    filteredProducts: [] as Product[],
   }),
   actions: {
     async fetchProducts() {
       try {
         const response = await apiClient.get<{ ürünler: Product[] }>('/urunler.json');
         this.products = response.data.ürünler;
+        this.filteredProducts = [...this.products];
       } catch (error) {
         console.error('Hata:', error);
       }
     },
+
   },
 });
