@@ -5,11 +5,17 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     children: [
       { path: '', component: () => import('pages/AnasayfaPage.vue') },
+      { path: '/Urunsec', component: () => import('pages/ListemeDenemePage.vue') },
       { path: '/Urunler', component: () => import('pages/UrunlistePage.vue') },
       {  path: '/Urundetay', component: () => import('pages/UrunDetayPage.vue') },
     ],
   },
-
+  {
+    path: '/Urunler',
+    component: () => import('pages/UrunlistePage.vue'),
+    children: [{ path: '/Urunler', component: () => import('pages/UrunlistePage.vue') },
+  ],
+  },
   {
     path: '/sepet/',
     component: () => import('layouts/SiparisLayout.vue'),
