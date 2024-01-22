@@ -1,21 +1,22 @@
-<script>
+<script lang="ts">
 import TheSepet from 'src/components/TheSepet.vue'
+import { ref } from 'vue';
 
 export default {
   name: 'TheBolum',
   components: {
     TheSepet,
   },
+
   data() {
     return {
       showSepet: false,
     }
   },
   methods: {
-    toggleArama() {
-      const acilirArama = document.querySelector('.acilirarama')
-      const arama = document.querySelector('.arama')
-
+    toggleArama(): void {
+      const acilirArama = document.querySelector('.acilirarama') as HTMLElement
+      const arama = document.querySelector('.arama') as HTMLElement
       if (acilirArama.style.display === 'none' || acilirArama.style.display === '') {
         acilirArama.style.display = 'flex'
         arama.style.display = 'none'
@@ -24,15 +25,43 @@ export default {
         arama.style.display = 'flex'
       }
     },
-    togglesepetackapa() {
+    togglesepetackapa(): void {
       this.showSepet = !this.showSepet
     },
+    applyAndGoFilters(yas, cinsiyet, ustTur, altTur) {
+      this.$router.push({
+        path: '/Urunler',
+        query: { yas, cinsiyet, ustTur, altTur }
+      });
+    }
+  },
+  setup() {
+    // Durumu saklamak için bir ref kullanıyoruz
+    const isSubMenuVisible = ref(false);
+
+    // Mouse üzerine gelindiğinde alt menüyü göster
+    const showSubMenu = () => {
+      isSubMenuVisible.value = true;
+    };
+
+    // Mouse üzerinden çıkıldığında alt menüyü gizle
+    const hideSubMenu = () => {
+      isSubMenuVisible.value = false;
+    };
+
+    return {
+      isSubMenuVisible,
+      showSubMenu,
+      hideSubMenu,
+    };
   },
 }
+
+
 </script>
 
 <template>
- <!-- <div class="menumenumenu">  </div>-->
+  <!-- <div class="menumenumenu">  </div>-->
   <div class="ana-bolum">
     <div class="kutu1">
       <img class="kutu1resim" src="src/assets/component 1/kargo-bedava-web.webp" style="height: 100%;">
@@ -60,69 +89,281 @@ export default {
       <div style="background-color: gray; height: 1px;" />
       <div class="kutu2-alt">
         <div class="logo">
-          <img src="src/assets/component 1/lumberjack logo.png">
+          <router-link to="/">
+            <img src="src/assets/component 1/lumberjack logo.png" alt="Lumberjack Logo">
+          </router-link>
         </div>
         <div class="menuler">
-          <div class="menu-item">
-            Kadın
-            <div class="submenu">
-              <a href="#">Elbissadasdeler</a>
-              <a href="#">Ayakkabılar</a>
-              <!-- Diğer alt menüler -->
+          <div class="menu-item" @mouseover="showSubMenu" @mouseleave="hideSubMenu">
+            <button class="ustmenubuton" @click="applyAndGoFilters('Yetişkin', 'Kadın', '', '')">
+              Kadın
+            </button>
+            <div class="menu-item-item " v-show="isSubMenuVisible">
+              <div class="menu-item-satir">
+                <div class="menu-item-kolon">
+                  <button class="ustmenuacilirbutonust" @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Ayakkabı', '')">
+                    Ayakkabı
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Ayakkabı', 'Sneaker')">
+                    Sneaker
+                  </button>
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Ayakkabı', 'Koşu')">
+                    Koşu
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Ayakkabı', 'Yürüyüş')">
+                    Yürüyüş
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Ayakkabı', 'Comfort')">
+                    Comfort
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Ayakkabı', 'Sandalet')">
+                    Sandalet
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Ayakkabı', 'Terlik')">
+                    Terlik
+                  </button>
+                </div>
+                <div class="menu-item-kolon">
+                  <button class="ustmenuacilirbutonust" @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Giyim', '')">
+                    Giyim
+                  </button>
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Giyim', 'T-shirt')">
+                    T-shirt
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Giyim', 'Sweatshirt')">
+                    Sweatshirt
+                  </button>
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Giyim', 'Eşofman')">
+                    Eşofman
+                  </button>
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Giyim', 'Tayt')">
+                    Tayt
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Giyim', 'Sport Bra')">
+                    Sport Bra
+                  </button>
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Giyim', 'Şort')">
+                    Şort
+                  </button>
+                </div>
+                <div class="menu-item-kolon">
+                  <button class="ustmenuacilirbutonust" @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Aksesuar', '')">
+                    Aksesuar
+                  </button>
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Aksesuar', 'Çanta')">
+                    Çanta
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Aksesuar', 'Sırt Çantası')">
+                    Sırt Çantası
+                  </button>
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Aksesuar', 'Valiz')">
+                    Valiz
+                  </button>
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Aksesuar', 'Çorap')">
+                    Çorap
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Aksesuar', 'Atkı-Bere-Eldiven')">
+                    Atkı-Bere-Eldiven
+                  </button>
+                </div>
+              </div>
             </div>
-            <div class="submenu">
-              <a href="#">asdas</a>
-              <a href="#">Ayakkabılar</a>
-              <!-- Diğer alt menüler -->
+          </div>
+
+          <div class="menu-item" @mouseover="showSubMenu" @mouseleave="hideSubMenu">
+
+            <button @click="applyAndGoFilters('Yetişkin', 'Erkek', '', '')" class="ustmenubuton">
+              Erkek
+            </button>
+            <div class="menu-item-item " v-show="isSubMenuVisible">
+              <div class="menu-item-satir">
+                <div class="menu-item-kolon">
+                  <button class="ustmenuacilirbutonust" @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Ayakkabı', '')">
+                    Ayakkabı
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Ayakkabı', 'Sneaker')">
+                    Sneaker
+                  </button>
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Ayakkabı', 'Koşu')">
+                    Koşu
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Ayakkabı', 'Yürüyüş')">
+                    Yürüyüş
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Ayakkabı', 'Casual')">
+                    Casual
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Ayakkabı', 'Comfort')">
+                    Comfort
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Ayakkabı', 'Sandalet')">
+                    Sandalet
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Ayakkabı', 'Terlik')">
+                    Terlik
+                  </button>
+                </div>
+                <div class="menu-item-kolon">
+                  <button class="ustmenuacilirbutonust" @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Giyim', '')">
+                    Giyim
+                  </button>
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Giyim', 'T-shirt')">
+                    T-shirt
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Giyim', 'Sweatshirt')">
+                    Sweatshirt
+                  </button>
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Giyim', 'Eşofman')">
+                    Eşofman
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Giyim', 'Softshell')">
+                    Softshell
+                  </button>
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Giyim', 'Şort')">
+                    Şort
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Giyim', 'Deniz Şortu')">
+                    Deniz Şortu
+                  </button>
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Giyim', 'Polar')">
+                    Polar
+                  </button>
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Giyim', 'Mont')">
+                    Mont
+                  </button>
+                </div>
+                <div class="menu-item-kolon">
+                  <button class="ustmenuacilirbutonust" @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Aksesuar', '')">
+                    Aksesuar
+                  </button>
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Aksesuar', 'Çanta')">
+                    Çanta
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Aksesuar', 'Sırt Çantası')">
+                    Sırt Çantası
+                  </button>
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Aksesuar', 'Valiz')">
+                    Valiz
+                  </button>
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Aksesuar', 'Şapka')">
+                    Şapka
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Aksesuar', 'Cüzdan')">
+                    Cüzdan
+                  </button>
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Aksesuar', 'Kemer')">
+                    Kemer
+                  </button>
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Aksesuar', 'Çorap')">
+                    Çorap
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Aksesuar', 'Atkı-Bere-Eldiven')">
+                    Atkı-Bere-Eldiven
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="menu-item" @mouseover="showSubMenu" @mouseleave="hideSubMenu">
+            <button @click="applyAndGoFilters('Çocuk', '', '', '')" class="ustmenubuton">
+              Çocuk
+            </button>
+            <div class="menu-item-item " v-show="isSubMenuVisible">
+              <div class="menu-item-satir">
+                <div class="menu-item-kolon">
+                  <button class="ustmenuacilirbutonust" @click="applyAndGoFilters('Çocuk', 'Kadın', '', '')">
+                    Kız Çocuk
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Çocuk', 'Kadın', 'Ayakkabı', 'Sneaker')">
+                    Sneaker
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Aksesuar', 'Koşu')">
+                    Koşu
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Aksesuar', 'Sandalet')">
+                    Sandalet
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Aksesuar', 'Terlik')">
+                    Terlik
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Aksesuar', 'Deniz')">
+                    Deniz
+                  </button>
+                </div>
+                <div class="menu-item-kolon">
+                  <button class="ustmenuacilirbutonust" @click="applyAndGoFilters('Çocuk', 'Erkek', '', '')">
+                    Erkek Çocuk
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Çocuk', 'Erkek', 'Ayakkabı', 'Sneaker')">
+                    Sneaker
+               </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Aksesuar', 'Koşu')">
+                    Koşu
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Aksesuar', 'Sandalet')">
+                    Sandalet
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Aksesuar', 'Terlik')">
+                    Terlik
+                  </button>
+                  <button class="ustmenuacilirbuton"
+                    @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Aksesuar', 'Deniz')">
+                    Deniz
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
           <div class="menu-item">
-            Erkek
-            <div class="submenu">
-              <a href="#">Gömlekler</a>
-              <a href="#">Pantolonlar</a>
-              <!-- Diğer alt menüler -->
-            </div>
+            <button @click="applyAndGoFilters('', '', 'Giyim', '')" class="ustmenubuton">
+              Giyim
+            </button>
           </div>
           <div class="menu-item">
-            Çocuk
-            <div class="submenu">
-              <a href="#">Çocuk Elbiseleri</a>
-              <a href="#">Oyuncaklar</a>
-              <!-- Diğer alt menüler -->
-            </div>
+            <button @click="applyAndGoFilters('', '', 'Aksesuar', '')" class="ustmenubuton">
+              Aksesuar
+            </button>
+
           </div>
           <div class="menu-item">
-            Giyim
-            <div class="submenu">
-              <a href="#">Şapkalar</a>
-              <a href="#">Atkılar</a>
-              <!-- Diğer alt menüler -->
-            </div>
+            <button @click="applyAndGoFilters('', '', 'Outdoor', '')" class="ustmenubuton">
+              Outdoor
+            </button>
           </div>
           <div class="menu-item">
-            Aksesuar
-            <div class="submenu">
-              <a href="#">Şapkalar</a>
-              <a href="#">Atkılar</a>
-              <!-- Diğer alt menüler -->
-            </div>
-          </div>
-          <div class="menu-item">
-            Outdoor
-            <div class="submenu">
-              <a href="#">Kamp Malzemeleri</a>
-              <a href="#">Spor Giyim</a>
-              <!-- Diğer alt menüler -->
-            </div>
-          </div>
-          <div class="menu-item">
-            İndirim
-            <div class="submenu">
-              <a href="#">Yaz İndirimi</a>
-              <a href="#">Kış İndirimi</a>
-              <!-- Diğer alt menüler -->
-            </div>
+            <button @click="applyAndGoFilters('', '', 'İndirim', '')" class="ustmenubuton">
+              İndirim
+            </button>
           </div>
         </div>
         <div class="sepet-arama">
@@ -160,19 +401,71 @@ export default {
 </template>
 
 <style scoped>
-.menumenumenu{
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #333;
-  color: white;
-  padding: 10px;
-  width: 1000px;
-  height: 250px;
-  z-index: 1000;
+.ustmenubuton {
+  font-size: 15px;
+}
+
+.ustmenuacilirbuton {
+  color: #707070;
+  font-size: 12px;
+  font-weight: 400;
 
 }
+
+.ustmenuacilirbutonust {
+  color: #707070;
+  font-size: 13px;
+  font-weight: 600;
+
+}
+
+.menu-item-satir {
+  display: flex;
+  flex-direction: row;
+  padding: 15px;
+}
+
+.menu-item-kolon {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding-right: 10px;
+  line-height: 1;
+}
+
+.menu-item {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  ;
+}
+
+.menu-item-item {
+  position: fixed;
+  top: 220px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  width: 75%;
+  height: auto;
+  z-index: 1000;
+  display: none;
+  flex-direction: row;
+  border: 1px solid #000;
+  border-radius: 10px;
+  border-bottom: 6px solid rgb(0, 0, 0);
+  /* Alt kenarı 2 piksel kalınlığında ve mavi renkte */
+
+}
+
+.menu-item:hover .menu-item-item {
+  display: block;
+}
+
 .ana-bolum {
   height: 200px;
   display: flex;
@@ -186,10 +479,12 @@ export default {
   background-color: #c8a51c;
   max-width: 100%;
 }
-.kutu1resim{
+
+.kutu1resim {
   max-width: 100%;
 
 }
+
 .kutu2 {
   height: 141px;
   width: 100%;
@@ -279,7 +574,7 @@ button::after {
 
 .menu-item {
   position: relative;
-  margin-left: 20px;
+  margin-left: 0px;
 
 }
 
@@ -333,7 +628,7 @@ button::after {
   height: 30px;
   width: 30px;
   object-fit: cover;
-position: relative;
+  position: relative;
 }
 
 .sepet i {
@@ -402,7 +697,8 @@ position: relative;
   outline: none;
   margin-left: 1px;
 }
-.acilirsepetcomponent{
+
+.acilirsepetcomponent {
   position: absolute;
   flex-direction: row-reverse;
   right: 0;
@@ -411,23 +707,28 @@ position: relative;
   width: 100%;
 
 }
-.sepeturunsayisi{
+
+.sepeturunsayisi {
   position: absolute;
   text-align: center;
   align-items: center;
   margin-top: 10px;
   color: rgb(0, 0, 0);
-  border-radius: 50%; /* Optional: Makes the background circle */
-  padding: 5px 8px; /* Adjust padding for better visibility */
+  border-radius: 50%;
+  /* Optional: Makes the background circle */
+  padding: 5px 8px;
+  /* Adjust padding for better visibility */
   font-size: 10px;
   font-family: sans-serif;
   font-weight: 400;
 }
+
 .arama:hover,
 .sepet:hover {
   cursor: pointer;
 }
-.closewindow{
+
+.closewindow {
   position: absolute;
   height: 40px;
   width: 40px;
@@ -438,11 +739,11 @@ position: relative;
   text-align: center;
   align-items: center;
   font-size: 20px;
-  font-weight:600;
+  font-weight: 600;
 }
-.sepetacilirr{
-display: flex;
-flex-direction: row-reverse;
 
-}
-</style>
+.sepetacilirr {
+  display: flex;
+  flex-direction: row-reverse;
+
+}</style>
