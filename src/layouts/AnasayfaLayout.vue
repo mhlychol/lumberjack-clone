@@ -1,6 +1,6 @@
 <template>
   <TheUstbar/>
-     <router-view to="/"/> <!---->
+     <router-view to="/Anasayfa"/> <!---->
   <TheFooter/>
 </template>
 <script setup lang="ts">
