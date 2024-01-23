@@ -1,5 +1,5 @@
 <template>
-  <UrunDetay :selectedProduct="selectedProduct" />
+<UrunDetay v-for="product in selectedProduct" :key="product.urunKodu" :product="product" :selectedProduct="selectedProduct" />
 </template>
 
 <script lang="ts">
