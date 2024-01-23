@@ -13,7 +13,8 @@
       "renk": ["Siyah", "Beyaz", "Kırmızı"],
       "fiyat": 299.99,
       "indirimOrani": 10,
-      "kargo": "Ücretsiz"
+      "kargo": "Ücretsiz",
+      "kuponindirimbilgi": ["1", "2","3"]
     },
     {
       "urunKodu": "DEF456",
@@ -28,7 +29,9 @@
       "renk": ["Gri", "Siyah"],
       "fiyat": 149.99,
       "indirimOrani": 0,
-      "kargo": "Ücretli"
+      "kargo": "Ücretli",
+      "kuponindirimbilgi": ["1","3"]
+
     },
     {
       "urunKodu": "GHI789",
@@ -43,7 +46,9 @@
       "renk": ["Kahverengi", "Siyah"],
       "fiyat": 79.99,
       "indirimOrani": 15,
-      "kargo": "Ücretsiz"
+      "kargo": "Ücretsiz",
+      "kuponindirimbilgi": ["1", "2"]
+
     },
     {
       "urunKodu": "JKL321",
@@ -58,7 +63,8 @@
       "renk": ["Pembe", "Beyaz", "Siyah"],
       "fiyat": 249.99,
       "indirimOrani": 20,
-      "kargo": "Ücretsiz"
+      "kargo": "Ücretsiz",
+      "kuponindirimbilgi": [ "2","3"]
     },
     {
       "urunKodu": "MNO987",
@@ -73,7 +79,8 @@
       "renk": ["Siyah", "Gri", "Mavi"],
       "fiyat": 129.99,
       "indirimOrani": 5,
-      "kargo": "Ücretli"
+      "kargo": "Ücretli",
+      "kuponindirimbilgi": []
     },
     {
       "urunKodu": "PQR654",
@@ -88,7 +95,8 @@
       "renk": ["Mor", "Turuncu", "Siyah"],
       "fiyat": 199.99,
       "indirimOrani": 15,
-      "kargo": "Ücretsiz"
+      "kargo": "Ücretsiz",
+      "kuponindirimbilgi": ["1", "2","3"]
     },
     {
       "urunKodu": "STU987",
@@ -103,7 +111,8 @@
       "renk": ["Beyaz", "Lacivert", "Yeşil"],
       "fiyat": 89.99,
       "indirimOrani": 10,
-      "kargo": "Ücretsiz"
+      "kargo": "Ücretsiz",
+      "kuponindirimbilgi": ["3"]
     },
     {
       "urunKodu": "XYZ987",
@@ -118,7 +127,8 @@
       "renk": ["Kırmızı", "Mavi", "Sarı"],
       "fiyat": 79.99,
       "indirimOrani": 0,
-      "kargo": "Ücretsiz"
+      "kargo": "Ücretsiz",
+      "kuponindirimbilgi": ["2"]
     },
     {
       "urunKodu": "ABC789",
@@ -133,7 +143,8 @@
       "renk": ["Siyah", "Beyaz", "Mavi"],
       "fiyat": 159.99,
       "indirimOrani": 5,
-      "kargo": "Ücretli"
+      "kargo": "Ücretli",
+      "kuponindirimbilgi": ["1"]
     },
     {
       "urunKodu": "DEF321",
@@ -148,7 +159,8 @@
       "renk": ["Pembe", "Mavi", "Mor"],
       "fiyat": 49.99,
       "indirimOrani": 0,
-      "kargo": "Ücretsiz"
+      "kargo": "Ücretsiz",
+      "kuponindirimbilgi": []
     },
     {
       "urunKodu": "GHI654",
@@ -163,7 +175,8 @@
       "renk": ["Kırmızı", "Mavi", "Siyah"],
       "fiyat": 29.99,
       "indirimOrani": 0,
-      "kargo": "Ücretsiz"
+      "kargo": "Ücretsiz",
+      "kuponindirimbilgi": ["1", "2"]
     },
     {
       "urunKodu": "MNO123",
@@ -178,7 +191,8 @@
       "renk": ["Turuncu", "Yeşil", "Pembe"],
       "fiyat": 89.99,
       "indirimOrani": 5,
-      "kargo": "Ücretsiz"
+      "kargo": "Ücretsiz",
+      "kuponindirimbilgi": ["1"]
     },
     {
       "urunKodu": "PQR987",
@@ -193,7 +207,8 @@
       "renk": ["Bordo", "Gri", "Beyaz"],
       "fiyat": 179.99,
       "indirimOrani": 10,
-      "kargo": "Ücretsiz"
+      "kargo": "Ücretsiz",
+      "kuponindirimbilgi": ["1","3"]
     },
     {
       "urunKodu": "STU321",
@@ -208,7 +223,8 @@
       "renk": ["Çeşitli Renkler"],
       "fiyat": 129.99,
       "indirimOrani": 0,
-      "kargo": "Ücretli"
+      "kargo": "Ücretli",
+      "kuponindirimbilgi": ["3"]
     },
     {
       "urunKodu": "ABC987",
@@ -223,7 +239,8 @@
       "renk": ["Siyah", "Beyaz", "Mavi"],
       "fiyat": 159.99,
       "indirimOrani": 5,
-      "kargo": "Ücretsiz"
+      "kargo": "Ücretsiz",
+      "kuponindirimbilgi": []
     },
     {
       "urunKodu": "XYZ321",
@@ -238,7 +255,8 @@
       "renk": ["Mavi", "Pembe"],
       "fiyat": 69.99,
       "indirimOrani": 0,
-      "kargo": "Ücretsiz"
+      "kargo": "Ücretsiz",
+      "kuponindirimbilgi": ["1"]
     },
     {
       "urunKodu": "GHI321",
@@ -253,7 +271,8 @@
       "renk": ["Turuncu", "Sarı", "Mavi"],
       "fiyat": 109.99,
       "indirimOrani": 10,
-      "kargo": "Ücretli"
+      "kargo": "Ücretli",
+      "kuponindirimbilgi": ["3"]
     },
     {
       "urunKodu": "MNO321",
@@ -268,7 +287,8 @@
       "renk": ["Siyah", "Kırmızı", "Mavi"],
       "fiyat": 129.99,
       "indirimOrani": 5,
-      "kargo": "Ücretsiz"
+      "kargo": "Ücretsiz",
+      "kuponindirimbilgi": ["1", "2"]
     },
     {
       "urunKodu": "PQR321",
@@ -283,7 +303,8 @@
       "renk": ["Siyah", "Beyaz", "Gri"],
       "fiyat": 59.99,
       "indirimOrani": 0,
-      "kargo": "Ücretli"
+      "kargo": "Ücretli",
+      "kuponindirimbilgi": ["1","3"]
     }
   ]
 }
