@@ -16,6 +16,7 @@ interface Product {
   fiyat: number;
   indirimOrani: number;
   kargo: string;
+  kuponindirimbilgi: string[];
 }
 
 export const useProductsStore = defineStore({
@@ -34,16 +35,42 @@ export const useProductsStore = defineStore({
         console.error('Hata:', error);
       }
     },
-    filterProducts(filterOptions: { yas?: string; cinsiyet?: string; ustTur?: string; altTur?: string }) {
-      // Filtreleme seçeneklerine göre ürünleri filtrele
-      this.filteredProducts = this.products.filter(product => {
-        return (
-          (!filterOptions.yas || product.yas === filterOptions.yas) &&
-          (!filterOptions.cinsiyet || product.cinsiyet === filterOptions.cinsiyet) &&
-          (!filterOptions.ustTur || product.ustTur === filterOptions.ustTur) &&
-          (!filterOptions.altTur || product.altTur === filterOptions.altTur)
-        );
-      });
+    applyFilter(yas, cinsiyet, ustTur, altTur) {
+      // Tüm ürünlerle başla
+      let filteredProductsCopy = [...this.products];
+
+      // Filtreleri sırayla uygula
+      if (cinsiyet) {
+        if (cinsiyet === 'Erkek' || cinsiyet === 'Kadın') {
+          // Eğer cinsiyet "Erkek" veya "Kadın" ise, hem kendi cinsiyetini hem de "Unisex" olanları göster
+          filteredProductsCopy = filteredProductsCopy.filter(product =>
+            product['cinsiyet'] === cinsiyet || product['cinsiyet'] === 'Unisex'
+          );
+        } else {
+          // Diğer durumlar için normal filtreleme
+          filteredProductsCopy = filteredProductsCopy.filter(product => product['cinsiyet'] === cinsiyet);
+        }
+      }
+      if (yas) {
+        filteredProductsCopy = filteredProductsCopy.filter(product => product['yas'] == yas);
+      }
+      if (altTur) {
+        filteredProductsCopy = filteredProductsCopy.filter(product => product['altTur'] === altTur);
+      }
+      if (ustTur) {
+        filteredProductsCopy = filteredProductsCopy.filter(product => product['ustTur'] === ustTur);
+      }
+
+      // Eğer hiçbir filtre uymuyorsa veya filtre sonucunda hiç ürün yoksa, tüm ürünleri göster
+      if (!filteredProductsCopy.length) {
+        filteredProductsCopy = [...this.products];
+      }
+
+      // Sonuçla filteredProducts'ı güncelle
+      this.filteredProducts = filteredProductsCopy.length > 0 ? filteredProductsCopy : [];
+
+      // Döndürülen değerleri belirt
+      return this.filteredProducts;
     },
     setProductByCode(urunKodu: string) {
       // Ürün koduna göre eşleşen ürünü bul ve sakla
