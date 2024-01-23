@@ -89,7 +89,7 @@ export default {
       <div style="background-color: gray; height: 1px;" />
       <div class="kutu2-alt">
         <div class="logo">
-          <router-link to="/">
+          <router-link to="/Anasayfa">
             <img src="src/assets/component 1/lumberjack logo.png" alt="Lumberjack Logo">
           </router-link>
         </div>
