@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { defineProps,ref } from 'vue';
+import { useProductStore } from 'stores/products';
+
  //const selectedRenkIndex = ref(0); // Başlangıçta seçili olan renk index'i
- const lastSelectedRenkIndex = ref(0);
- import { useRouter } from 'vue-router';
+ const lastSelectedRenkIndex1 = ref(0);
+ import { useRouter} from 'vue-router';
 
 const props = defineProps(['product']);
 const calculateIndirimliFiyat = (fiyat, indirimOrani) => {
@@ -27,7 +29,7 @@ const getStyleForEskiFiyat = (indirimOrani) => {
 
 
 const getImgUrl = (product: { urunKodu: string; renk: string[] }): string => {
-  return `src/assets/${product.urunKodu}${product.renk[lastSelectedRenkIndex.value]}1.webp`;
+  return `src/assets/${product.urunKodu}${product.renk[lastSelectedRenkIndex1.value]}1.webp`;
 };
 
 const getRenkImgUrl = (urunKodu: string, renk: string): string => {
@@ -35,24 +37,26 @@ const getRenkImgUrl = (urunKodu: string, renk: string): string => {
 };
 
 const handleMouseOver = (index: number): void => {
-  lastSelectedRenkIndex.value = index;
+  lastSelectedRenkIndex1.value = index;
   console.log(`Mouse over: ${index}`);
 };
-
 const router = useRouter();
+const productStore = useProductStore();
 
-const handleImageClick = ()  => {
-  // UrunListePage.vue sayfasına filtre seçeneklerini gönder
+const handleImageClick = function() {
 
-  router.push({
-    path: 'Urundetay', // veya path: '/Urundetay' şeklinde de kullanabilirsiniz
-    query: {
-      urunKodu: props.product.urunKodu,
-      renk: props.product.renk[lastSelectedRenkIndex.value],
-      // Diğer ürün bilgilerini ekleyebilirsiniz
-    },
-  });
+  const selectedProduct = props.product;
+  const selectedRenkIndex = props.product.renk[lastSelectedRenkIndex1.value];
+console.log(selectedProduct),
+console.log(selectedRenkIndex),
+productStore.setSelectedProduct(selectedProduct);
+productStore.setSelectedRenk(selectedRenkIndex);
+
+router.push('/Urundetay');
+
+
 };
+
 </script>
 
 <template>
@@ -97,7 +101,7 @@ const handleImageClick = ()  => {
           <Button class="renkresim" @mouseover="handleMouseOver(index)">
             <img class="icresim" :src="getRenkImgUrl(product.urunKodu, renk)" alt="">
           </Button>
-          <div class="seciliitem" :style="{ visibility: index === lastSelectedRenkIndex ? 'visible' : 'hidden' }" />
+          <div class="seciliitem" :style="{ visibility: index === lastSelectedRenkIndex1 ? 'visible' : 'hidden' }" />
         </div>
       </div>
     </div>

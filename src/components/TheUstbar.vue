@@ -2,12 +2,12 @@
 import TheSepet from 'src/components/TheSepet.vue'
 import { ref } from 'vue';
 
+
 export default {
   name: 'TheBolum',
   components: {
     TheSepet,
   },
-
   data() {
     return {
       showSepet: false,
@@ -15,39 +15,30 @@ export default {
   },
   methods: {
     toggleArama(): void {
-      const acilirArama = document.querySelector('.acilirarama') as HTMLElement
-      const arama = document.querySelector('.arama') as HTMLElement
-      if (acilirArama.style.display === 'none' || acilirArama.style.display === '') {
-        acilirArama.style.display = 'flex'
-        arama.style.display = 'none'
-      } else {
-        acilirArama.style.display = 'none'
-        arama.style.display = 'flex'
-      }
+      // ... toggleArama fonksiyonu içeriği ...
     },
     togglesepetackapa(): void {
       this.showSepet = !this.showSepet
     },
-    applyAndGoFilters(yas, cinsiyet, ustTur, altTur) {
+    applyAndGoFilters(yas, cinsiyet, ustTur, altTur)  {
       this.$router.push({
         path: '/Urunler',
-        query: { yas, cinsiyet, ustTur, altTur }
+      query: {yas, cinsiyet, ustTur, altTur}
       });
     }
   },
   setup() {
-    // Durumu saklamak için bir ref kullanıyoruz
     const isSubMenuVisible = ref(false);
 
-    // Mouse üzerine gelindiğinde alt menüyü göster
     const showSubMenu = () => {
       isSubMenuVisible.value = true;
     };
 
-    // Mouse üzerinden çıkıldığında alt menüyü gizle
     const hideSubMenu = () => {
       isSubMenuVisible.value = false;
     };
+
+
 
     return {
       isSubMenuVisible,
@@ -56,8 +47,6 @@ export default {
     };
   },
 }
-
-
 </script>
 
 <template>
@@ -295,12 +284,10 @@ export default {
                   <button class="ustmenuacilirbutonust" @click="applyAndGoFilters('Çocuk', 'Kadın', '', '')">
                     Kız Çocuk
                   </button>
-                  <button class="ustmenuacilirbuton"
-                    @click="applyAndGoFilters('Çocuk', 'Kadın', 'Ayakkabı', 'Sneaker')">
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Çocuk', 'Kadın', 'Ayakkabı', 'Sneaker')">
                     Sneaker
                   </button>
-                  <button class="ustmenuacilirbuton"
-                    @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Aksesuar', 'Koşu')">
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Aksesuar', 'Koşu')">
                     Koşu
                   </button>
                   <button class="ustmenuacilirbuton"
@@ -311,8 +298,7 @@ export default {
                     @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Aksesuar', 'Terlik')">
                     Terlik
                   </button>
-                  <button class="ustmenuacilirbuton"
-                    @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Aksesuar', 'Deniz')">
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Yetişkin', 'Kadın', 'Aksesuar', 'Deniz')">
                     Deniz
                   </button>
                 </div>
@@ -320,12 +306,10 @@ export default {
                   <button class="ustmenuacilirbutonust" @click="applyAndGoFilters('Çocuk', 'Erkek', '', '')">
                     Erkek Çocuk
                   </button>
-                  <button class="ustmenuacilirbuton"
-                    @click="applyAndGoFilters('Çocuk', 'Erkek', 'Ayakkabı', 'Sneaker')">
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Çocuk', 'Erkek', 'Ayakkabı', 'Sneaker')">
                     Sneaker
-               </button>
-                  <button class="ustmenuacilirbuton"
-                    @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Aksesuar', 'Koşu')">
+                  </button>
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Aksesuar', 'Koşu')">
                     Koşu
                   </button>
                   <button class="ustmenuacilirbuton"
@@ -336,8 +320,7 @@ export default {
                     @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Aksesuar', 'Terlik')">
                     Terlik
                   </button>
-                  <button class="ustmenuacilirbuton"
-                    @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Aksesuar', 'Deniz')">
+                  <button class="ustmenuacilirbuton" @click="applyAndGoFilters('Yetişkin', 'Erkek', 'Aksesuar', 'Deniz')">
                     Deniz
                   </button>
                 </div>
@@ -746,4 +729,5 @@ button::after {
   display: flex;
   flex-direction: row-reverse;
 
-}</style>
+}
+</style>

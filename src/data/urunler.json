@@ -14,7 +14,8 @@
       "fiyat": 299.99,
       "indirimOrani": 10,
       "kargo": "Ücretsiz",
-      "kuponindirimbilgi": ["1", "2","3"]
+      "kuponindirimbilgi": ["1", "2","3"],
+      "sezon":["kış"]
     },
     {
       "urunKodu": "DEF456",
@@ -30,7 +31,8 @@
       "fiyat": 149.99,
       "indirimOrani": 0,
       "kargo": "Ücretli",
-      "kuponindirimbilgi": ["1","3"]
+      "kuponindirimbilgi": ["1","3"],
+      "sezon":["ilkbahar"]
 
     },
     {
@@ -47,7 +49,8 @@
       "fiyat": 79.99,
       "indirimOrani": 15,
       "kargo": "Ücretsiz",
-      "kuponindirimbilgi": ["1", "2"]
+      "kuponindirimbilgi": ["1", "2"],
+      "sezon":["yaz"]
 
     },
     {
@@ -64,7 +67,8 @@
       "fiyat": 249.99,
       "indirimOrani": 20,
       "kargo": "Ücretsiz",
-      "kuponindirimbilgi": [ "2","3"]
+      "kuponindirimbilgi": [ "2","3"],
+      "sezon":["sonabahar"]
     },
     {
       "urunKodu": "MNO987",
@@ -80,7 +84,8 @@
       "fiyat": 129.99,
       "indirimOrani": 5,
       "kargo": "Ücretli",
-      "kuponindirimbilgi": []
+      "kuponindirimbilgi": [],
+      "sezon":["sonabahar"]
     },
     {
       "urunKodu": "PQR654",
@@ -96,7 +101,8 @@
       "fiyat": 199.99,
       "indirimOrani": 15,
       "kargo": "Ücretsiz",
-      "kuponindirimbilgi": ["1", "2","3"]
+      "kuponindirimbilgi": ["1", "2","3"],
+      "sezon":["ilkbahar"]
     },
     {
       "urunKodu": "STU987",
@@ -112,7 +118,8 @@
       "fiyat": 89.99,
       "indirimOrani": 10,
       "kargo": "Ücretsiz",
-      "kuponindirimbilgi": ["3"]
+      "kuponindirimbilgi": ["3"],
+      "sezon":["sonabahar"]
     },
     {
       "urunKodu": "XYZ987",
@@ -128,7 +135,8 @@
       "fiyat": 79.99,
       "indirimOrani": 0,
       "kargo": "Ücretsiz",
-      "kuponindirimbilgi": ["2"]
+      "kuponindirimbilgi": ["2"],
+      "sezon":["kış"]
     },
     {
       "urunKodu": "ABC789",
@@ -144,7 +152,8 @@
       "fiyat": 159.99,
       "indirimOrani": 5,
       "kargo": "Ücretli",
-      "kuponindirimbilgi": ["1"]
+      "kuponindirimbilgi": ["1"],
+      "sezon":["yaz"]
     },
     {
       "urunKodu": "DEF321",
@@ -160,7 +169,8 @@
       "fiyat": 49.99,
       "indirimOrani": 0,
       "kargo": "Ücretsiz",
-      "kuponindirimbilgi": []
+      "kuponindirimbilgi": [],
+      "sezon":["sonabahar"]
     },
     {
       "urunKodu": "GHI654",
@@ -176,7 +186,8 @@
       "fiyat": 29.99,
       "indirimOrani": 0,
       "kargo": "Ücretsiz",
-      "kuponindirimbilgi": ["1", "2"]
+      "kuponindirimbilgi": ["1", "2"],
+      "sezon":["ilkbahar"]
     },
     {
       "urunKodu": "MNO123",
@@ -192,7 +203,8 @@
       "fiyat": 89.99,
       "indirimOrani": 5,
       "kargo": "Ücretsiz",
-      "kuponindirimbilgi": ["1"]
+      "kuponindirimbilgi": ["1"],
+      "sezon":["sonabahar"]
     },
     {
       "urunKodu": "PQR987",
@@ -208,7 +220,8 @@
       "fiyat": 179.99,
       "indirimOrani": 10,
       "kargo": "Ücretsiz",
-      "kuponindirimbilgi": ["1","3"]
+      "kuponindirimbilgi": ["1","3"],
+      "sezon":["kış"]
     },
     {
       "urunKodu": "STU321",
@@ -224,7 +237,8 @@
       "fiyat": 129.99,
       "indirimOrani": 0,
       "kargo": "Ücretli",
-      "kuponindirimbilgi": ["3"]
+      "kuponindirimbilgi": ["3"],
+      "sezon":["sonabahar"]
     },
     {
       "urunKodu": "ABC987",
@@ -240,7 +254,8 @@
       "fiyat": 159.99,
       "indirimOrani": 5,
       "kargo": "Ücretsiz",
-      "kuponindirimbilgi": []
+      "kuponindirimbilgi": [],
+      "sezon":["yaz"]
     },
     {
       "urunKodu": "XYZ321",
@@ -256,7 +271,9 @@
       "fiyat": 69.99,
       "indirimOrani": 0,
       "kargo": "Ücretsiz",
-      "kuponindirimbilgi": ["1"]
+      "kuponindirimbilgi": ["1"],
+      "sezon":["yaz"]
+
     },
     {
       "urunKodu": "GHI321",
@@ -272,7 +289,8 @@
       "fiyat": 109.99,
       "indirimOrani": 10,
       "kargo": "Ücretli",
-      "kuponindirimbilgi": ["3"]
+      "kuponindirimbilgi": ["3"],
+      "sezon":["sonabahar"]
     },
     {
       "urunKodu": "MNO321",
@@ -288,7 +306,8 @@
       "fiyat": 129.99,
       "indirimOrani": 5,
       "kargo": "Ücretsiz",
-      "kuponindirimbilgi": ["1", "2"]
+      "kuponindirimbilgi": ["1", "2"],
+      "sezon":["kış","sonabahar"]
     },
     {
       "urunKodu": "PQR321",
@@ -304,7 +323,8 @@
       "fiyat": 59.99,
       "indirimOrani": 0,
       "kargo": "Ücretli",
-      "kuponindirimbilgi": ["1","3"]
+      "kuponindirimbilgi": ["1","3"],
+      "sezon":["yaz","ilkbahar"]
     }
   ]
 }

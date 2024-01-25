@@ -1,6 +1,7 @@
 // src/stores/products.ts
+import apiClient from 'src/services/AxiosService';
 import { defineStore } from 'pinia';
-import apiClient from 'src/services/AxiosPiniaService';
+
 
 interface Product {
   urunKodu: string;
@@ -17,15 +18,26 @@ interface Product {
   indirimOrani: number;
   kargo: string;
   kuponindirimbilgi: string[];
+  sezon: string[];
 }
-
-export const useProductsStore = defineStore({
+export const useProductStore = defineStore({
   id: 'products',
   state: () => ({
     products: [] as Product[],
     filteredProducts: [] as Product[],
+    selectedProduct: null,
+    selectedRenk: null,
+
   }),
+
   actions: {
+    //urunleri dosyadan cek
+    setSelectedProduct(product) {
+      this.selectedProduct = product;
+    },
+    setSelectedRenk(renk) {
+      this.selectedRenk = renk;
+    },
     async fetchProducts() {
       try {
         const response = await apiClient.get<{ ürünler: Product[] }>('/urunler.json');
@@ -35,66 +47,57 @@ export const useProductsStore = defineStore({
         console.error('Hata:', error);
       }
     },
+    searchProducts(searchTerm: string) {
+      if (!searchTerm) {
+        // If the search term is empty, reset filteredProducts to all products
+        this.filteredProducts = [...this.products];
+        return;
+      }
+
+      // Convert the search term to lowercase for case-insensitive search
+      const term = searchTerm.toLowerCase();
+
+      // Filter products based on the search term
+      this.filteredProducts = this.products.filter((product) =>
+        Object.values(product).some((value) =>
+          value && typeof value === 'string' && value.toLowerCase().includes(term)
+        )
+      );
+    },
+
     applyFilter(yas, cinsiyet, ustTur, altTur) {
-      // Tüm ürünlerle başla
-      let filteredProductsCopy = [...this.products];
+      console.log(yas, cinsiyet, ustTur, altTur)
 
-      // Filtreleri sırayla uygula
-      if (cinsiyet) {
-        if (cinsiyet === 'Erkek' || cinsiyet === 'Kadın') {
-          // Eğer cinsiyet "Erkek" veya "Kadın" ise, hem kendi cinsiyetini hem de "Unisex" olanları göster
-          filteredProductsCopy = filteredProductsCopy.filter(product =>
-            product['cinsiyet'] === cinsiyet || product['cinsiyet'] === 'Unisex'
-          );
-        } else {
-          // Diğer durumlar için normal filtreleme
-          filteredProductsCopy = filteredProductsCopy.filter(product => product['cinsiyet'] === cinsiyet);
-        }
-      }
-      if (yas) {
-        filteredProductsCopy = filteredProductsCopy.filter(product => product['yas'] == yas);
-      }
-      if (altTur) {
-        filteredProductsCopy = filteredProductsCopy.filter(product => product['altTur'] === altTur);
-      }
-      if (ustTur) {
-        filteredProductsCopy = filteredProductsCopy.filter(product => product['ustTur'] === ustTur);
+      let filteredList = [...this.products];
+
+      if (yas !== null) {
+        filteredList = filteredList.filter(product => product.yas === yas);
       }
 
-      // Eğer hiçbir filtre uymuyorsa veya filtre sonucunda hiç ürün yoksa, tüm ürünleri göster
-      if (!filteredProductsCopy.length) {
-        filteredProductsCopy = [...this.products];
+      // Check and filter based on 'cinsiyet'
+      if (cinsiyet !== null) {
+        filteredList = filteredList.filter(product => product.cinsiyet === cinsiyet || product.cinsiyet === 'Unisex');
       }
 
-      // Sonuçla filteredProducts'ı güncelle
-      this.filteredProducts = filteredProductsCopy.length > 0 ? filteredProductsCopy : [];
+      // Check and filter based on 'ustTur'
+      if (ustTur !== null) {
+        filteredList = filteredList.filter(product => product.ustTur === ustTur);
+      }
 
-      // Döndürülen değerleri belirt
-      return this.filteredProducts;
+      // Check and filter based on 'altTur'
+      if (altTur !== null) {
+        filteredList = filteredList.filter(product => product.altTur === altTur);
+      }
+
+      // Update the filteredProducts list in the store
+      this.filteredProducts = filteredList;
     },
-    setProductByCode(urunKodu: string) {
-      // Ürün koduna göre eşleşen ürünü bul ve sakla
-      const selectedProduct = this.products.find(product => product.urunKodu === urunKodu);
-      if (selectedProduct) {
-        this.filteredProducts = [selectedProduct];
-      } else {
-        // Ürün bulunamazsa, filteredProducts'i boşaltabilir veya başka bir işlem yapabilirsiniz.
-        this.filteredProducts = [];
-      }
-    },
+
+
   },
-});
-export const useProductStore2 = defineStore('Product', {
-  state: () => ({
-    selectedProduct: {
-      urunKodu: '',
-      renk: '',
-    },
-  }),
+  getters: {
+    getSelectedProduct: (state) => state.selectedProduct,
+    getSelectedRenk: (state) => state.selectedRenk,
 
-  actions: {
-    setSelectedProduct(product) {
-      this.selectedProduct = product;
-    },
   },
 });

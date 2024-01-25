@@ -13,16 +13,26 @@
     "build": "quasar build"
   },
   "dependencies": {
+    "@firebase/app-types": "^0.9.0",
     "@fortawesome/fontawesome-free": "^6.5.1",
     "@quasar/extras": "^1.16.4",
+    "@vue/cli": "^5.0.8",
+    "@vue/compiler-sfc": "^3.4.15",
     "axios": "^1.2.1",
+    "firebase": "^10.7.2",
+    "firebase-admin": "^11.11.1",
+    "firebase-functions": "^4.6.0",
+    "nuxt-vuefire": "^1.0.1",
     "pinia": "^2.1.7",
     "quasar": "^2.8.0",
+    "quasar-app-extension-firebase": "^1.0.0-alpha.11",
     "vue": "^3.2.29",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.12",
+    "vuefire": "^3.1.22"
   },
   "devDependencies": {
     "@quasar/app-vite": "^1.4.3",
+    "@types/firebase": "^3.2.1",
     "@types/node": "^12.20.21",
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",

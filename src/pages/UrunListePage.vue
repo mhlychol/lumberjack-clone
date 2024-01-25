@@ -9,6 +9,8 @@
       <p>{{ $route.query.yas }}/{{ $route.query.cinsiyet }}/ {{ $route.query.ustTur }}/{{ $route.query.altTur }}</p>
     </div>
     <button @click="fetchProducts">Verileri Çek</button>
+    <button @click="applyFilter">filtrele</button>
+
     <div class="urun-grid" :style="{ gridTemplateColumns: `repeat(${gridColumn}, 1fr)` }">
       <TheUrun v-for="product in filteredProducts" :key="product.urunKodu" :product="product" />
     </div>
@@ -17,36 +19,39 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { useProductsStore } from 'stores/products';
+import { useProductStore } from 'stores/products';
 import TheUrun from 'src/components/TheUrun.vue';
 import { useRoute } from 'vue-router';
 
-const productsStore = useProductsStore();
-const products = ref(productsStore.products);
+const productStore = useProductStore();
+const products = ref(productStore.products);
 const gridColumn = ref<number>(3);
-const filteredProducts = ref(productsStore.products);
+const filteredProducts = ref(productStore.products);
 
 const setGridColumn = (columns: number) => {
   gridColumn.value = columns;
 };
+const yas = useRoute().query.yas || null;
+const cinsiyet = useRoute().query.cinsiyet|| null ;
+const ustTur = useRoute().query.ustTur || null;
+const altTur = useRoute().query.altTur|| null;
 
 const applyFilter = () => {
-  const { yas, cinsiyet, ustTur, altTur } = useRoute().query;
-  // Store'u kullanarak filtreleme işlemini gerçekleştir
-  filteredProducts.value = productsStore.applyFilter(yas, cinsiyet, ustTur, altTur);
-  fetchProducts();
 
+  productStore.applyFilter(yas, cinsiyet, ustTur, altTur);
+  filteredProducts.value = productStore.filteredProducts;
+  console.log(yas, cinsiyet, ustTur, altTur)
 };
 
 const fetchProducts = async () => {
-  await productsStore.fetchProducts();
-  products.value = productsStore.products;
+  await productStore.fetchProducts();
+  products.value = productStore.products;
   // Update filteredProducts as well
-  applyFilter(); // Reapply the filters after fetching new products
 };
 
 onMounted(() => {
   fetchProducts();
+  applyFilter();
 });
 </script>
 

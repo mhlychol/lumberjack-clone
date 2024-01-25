@@ -1,0 +1,16 @@
+{
+  "SepetUrunler": [
+    {
+      "UrunKodu":"ABC1s3",
+      "beden":"38",
+      "renk":"Siyah",
+      "adet":"2"
+    },
+    {
+      "UrunKodu":"DEF456",
+      "beden":"M",
+      "renk":"Gri",
+      "adet":"1"
+    }
+  ]
+}

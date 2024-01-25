@@ -1,16 +1,19 @@
 <script lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted ,computed } from 'vue';
+//import { sepeteEkle, fetchSepetUrunleri } from 'boot/firebase';
+import { useProductStore } from 'stores/products';
+const productStore = useProductStore();
+
+
 
 export default {
-  props: {
-    selectedProduct: {
-      type: Object,
-      required: true,
-    },
-  },
+
   setup() {
     const lastSelectedRenkIndex = ref(0);
     const selectedBedenIndex = ref(3);
+
+    const selectedProduct = computed(() => productStore.getSelectedProduct);
+    const selectedRenk = computed(() => productStore.getSelectedRenk);
 
     const getStyleForEskiFiyat = (indirimOrani: number) => {
       return indirimOrani !== 0
@@ -20,6 +23,7 @@ export default {
         }
         : {};
     };
+
     const getDeliveryDate = (): string => {
       const currentDate = new Date();
       const deliveryDate3 = new Date(currentDate);
@@ -36,7 +40,7 @@ export default {
       const formattedDate3 = deliveryDate3.toLocaleDateString('tr-TR', options);
       const formattedDate6 = deliveryDate6.toLocaleDateString('tr-TR', options);
 
-      return `${formattedDate3.slice(0,-4)}- ${formattedDate6}`;
+      return `${formattedDate3.slice(0, -4)}- ${formattedDate6}`;
     };
 
     const getRenkImgUrl = (urunKodu: string, renk: string): string => {
@@ -46,12 +50,36 @@ export default {
     const getImgUrl = (urunKodu: string, renk: string, index: number): string => {
       return `src/assets/${urunKodu}${renk}${index}.webp`;
     };
+
     const handleMouseOver = (index: number): void => {
       lastSelectedRenkIndex.value = index;
     };
+
     const handleMouseOverbeden = (index: number): void => {
       selectedBedenIndex.value = index;
     };
+
+    const sepeteekle = async (urunKodu: string, renk: string, beden: string): Promise<void> => {
+      console.log(urunKodu,renk,beden )
+     /* const yeniUrun = {
+        Urunkodu: urunKodu,
+        beden: beden,
+        adet: 1,
+        renk: renk,
+      };
+
+      try {
+       // await sepeteEkle(yeniUrun);
+       // await fetchSepetUrunleri();
+      } catch (error) {
+        console.error('Error adding urun to sepet:', error);
+      }*/
+    };
+
+    onMounted(() => {
+      // fetchSepetUrunleri();
+
+    });
 
     return {
       lastSelectedRenkIndex,
@@ -62,17 +90,17 @@ export default {
       handleMouseOverbeden,
       getImgUrl,
       getDeliveryDate,
+      sepeteekle,
+      selectedProduct,
+      selectedRenk
     };
   },
 };
 </script>
 
 <template>
-  <div v-if="selectedProduct">
-    <h3>{{ selectedProduct.urunKodu }}</h3>
-    <p>marka: {{ selectedProduct.marka }}</p>
-    <p>Model: {{ selectedProduct.model }}</p>
-    <p>urunAciklamasi: {{ selectedProduct.urunAciklamasi }}</p>
+  <div class="selectedProduct">
+
   </div>
   <div class="Urundetayconteiner">
     <div class="Urunconteiner">
@@ -83,7 +111,7 @@ export default {
         </div>
       </div>
       <div class="Urundetaybilgiler">
-        <div class="model">
+        <div class="model1">
           {{ selectedProduct.urunAciklamasi }}
         </div>
         <div class="Urundetaykargoindirimdurum">
@@ -141,7 +169,8 @@ export default {
             </button>
           </div>
           <div class="Urundetaybedecesit">
-            <div v-for="(beden, index) in selectedProduct.bedenler" :key="index" class="Urundetaybeden" @click="handleMouseOverbeden(index)"
+            <div v-for="(beden, index) in selectedProduct.bedenler" :key="index" class="Urundetaybeden"
+              @click="handleMouseOverbeden(index)"
               :style="{ backgroundColor: index === selectedBedenIndex ? 'black' : '', color: index === selectedBedenIndex ? 'white' : '' }">
               {{ beden }}
             </div>
@@ -154,9 +183,13 @@ export default {
               Tahmini Kargoya Teslimat : {{ getDeliveryDate() }}
             </div>
           </div>
-          <button class="Urundetaysepetekle">
+          <button class="Urundetaysepetekle"
+            @click="sepeteekle(selectedProduct.urunKodu, selectedProduct.renk[lastSelectedRenkIndex], selectedProduct.bedenler[selectedBedenIndex])">
             SEPETE EKLE
           </button>
+          <div class="sepetaltigizli">
+
+          </div>
           <button class="Urundetayfavekle">
             <i class="fa-regular fa-heart" />
             <div class="Urundetayfavekleyazi">
@@ -170,6 +203,10 @@ export default {
 </template>
 
 <style>
+.selectedProduct {
+  height: 55px;
+}
+
 .Urundetayconteiner {
   display: flex;
   flex-direction: column;
@@ -213,7 +250,7 @@ export default {
 
 }
 
-.model {
+.model1 {
   font-family: sans-serif;
   font-size: 16px;
   margin: 0 0 5px 0;
@@ -277,7 +314,7 @@ export default {
 }
 
 .Urundetayeskifiyat {
-  color: rgb(0, 0, 0);
+  color: rgb(255, 0, 0);
   padding-right: 10px;
 }
 
@@ -352,6 +389,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 5px;
 }
 
 .Urundetayyazi {
@@ -429,7 +467,8 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-
+  border: none;
+  background-color: transparent;
 }
 
 .Urundetayfavekleyazi {

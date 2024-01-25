@@ -1,8 +1,8 @@
-// src/services/AxiosPiniaService.ts
+// services/axiosservice.ts
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: '/src/data', // JSON dosyasının bulunduğu dizin
+  baseURL: 'src/data',
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
