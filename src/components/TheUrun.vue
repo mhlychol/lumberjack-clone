@@ -66,8 +66,8 @@ router.push('/Urundetay');
         <div class="resimustukupon">
           <img src="assets/kupon.webp" alt="">
         </div>
-        <div class="resimurun">
-          <img class="imgresim" :src="getImgUrl(product)" @click="handleImageClick()">
+        <div class="resimurun" @click="handleImageClick()">
+          <img class="imgresim" :src="getImgUrl(product)" >
         </div>
       </div>
       <div class="kargoindirimdurum">
@@ -98,7 +98,7 @@ router.push('/Urundetay');
       </div>
       <div class="renkresimler">
         <div v-for="(renk, index) in product.renk" :key="index" class="renkresimconteiner">
-          <Button class="renkresim" @mouseover="handleMouseOver(index)">
+          <Button class="renkresim" @mouseover="handleMouseOver(index)" @click="handleImageClick()">
             <img class="icresim" :src="getRenkImgUrl(product.urunKodu, renk)" alt="">
           </Button>
           <div class="seciliitem" :style="{ visibility: index === lastSelectedRenkIndex1 ? 'visible' : 'hidden' }" />
