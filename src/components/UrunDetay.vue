@@ -59,22 +59,8 @@ export default {
       selectedBedenIndex.value = index;
     };
 
-    const sepeteekle = async (urunKodu: string, renk: string, beden: string): Promise<void> => {
-      console.log(urunKodu,renk,beden )
-     /* const yeniUrun = {
-        Urunkodu: urunKodu,
-        beden: beden,
-        adet: 1,
-        renk: renk,
-      };
-
-      try {
-       // await sepeteEkle(yeniUrun);
-       // await fetchSepetUrunleri();
-      } catch (error) {
-        console.error('Error adding urun to sepet:', error);
-      }*/
-    };
+    const sepeteekle = async (urunKodu, renk, beden): Promise<void> => {
+      urunKodu+renk+beden;  };
 
     onMounted(() => {
       // fetchSepetUrunleri();
