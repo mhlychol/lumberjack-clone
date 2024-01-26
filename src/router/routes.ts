@@ -12,7 +12,12 @@ const routes: RouteRecordRaw[] = [
       //{  path: 'Urundetaydeneme', component: () => import('pages/UrunDetayDeneme.vue') },
     ],
   },
+  {
+    path: '/Urunler',
+    children: [{ path: '', component: () => import('pages/UrunlistePage.vue') },
 
+  ],
+  },
   {
     path: '/sepet/',
     component: () => import('layouts/SiparisLayout.vue'),
