@@ -3,12 +3,15 @@ import { ref, onMounted ,computed } from 'vue';
 //import { sepeteEkle, fetchSepetUrunleri } from 'boot/firebase';
 import { useProductStore } from 'stores/products';
 const productStore = useProductStore();
+import { useSepetStore } from 'stores/sepet';
 
 
 
 export default {
 
   setup() {
+    const sepetStore = useSepetStore();
+
     const lastSelectedRenkIndex = ref(0);
     const selectedBedenIndex = ref(3);
 
@@ -59,8 +62,10 @@ export default {
       selectedBedenIndex.value = index;
     };
 
-    const sepeteekle = async (urunKodu, renk, beden): Promise<void> => {
-      urunKodu+renk+beden;  };
+    const sepeteekle = async (urunKodu,urunAciklamasi, renk, beden,  fiyat, indirimOrani): Promise<void> => {
+      sepetStore.urunEkle({ urunKodu,urunAciklamasi, renk, beden, adet:1, fiyat, indirimOrani})
+
+     };
 
     onMounted(() => {
       // fetchSepetUrunleri();
@@ -170,7 +175,7 @@ export default {
             </div>
           </div>
           <button class="Urundetaysepetekle"
-            @click="sepeteekle(selectedProduct.urunKodu, selectedProduct.renk[lastSelectedRenkIndex], selectedProduct.bedenler[selectedBedenIndex])">
+            @click="sepeteekle(selectedProduct.urunKodu,selectedProduct.urunAciklamasi, selectedProduct.renk[lastSelectedRenkIndex], selectedProduct.bedenler[selectedBedenIndex],selectedProduct.fiyat, selectedProduct.indirimOrani)">
             SEPETE EKLE
           </button>
           <div class="sepetaltigizli">
