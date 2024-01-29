@@ -36,6 +36,7 @@ export default defineComponent({
     const cinsiyet = 'Kadın';
     const ustTur = null;
     const altTur =null ;
+
     const filterProducts = () => {
 
       productStore.applyFilter(yas, cinsiyet,ustTur,altTur);
