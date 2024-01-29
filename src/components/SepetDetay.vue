@@ -1,9 +1,60 @@
-import { Button } from 'ant-design-vue/es';
+<script lang="ts">
+import SepetDetayurun from 'components/SepetDetayurun.vue'; // Adjust the path accordingly
+import { useSepetStore } from 'stores/sepet';
+import { onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+
+export default {
+  components: {
+    SepetDetayurun,
+  },
+
+  setup() {
+    const sepetStore = useSepetStore();
+    const sepetUrunler = sepetStore.sepetUrunleri;
+    const router = useRouter();
+
+    onMounted(() => {
+      sepetStore.getFirebaseToSepet();
+    });
+
+    console.log('sepeturunleri', sepetUrunler.values); // Log the data to the console
+
+    const toplamAdetHesapla = () => {
+      const toplam = sepetUrunler.reduce((acc, urun) => acc + urun.adet, 0);
+      const basamaklar = toplam.toString().split('').map(Number);
+      const toplamson = basamaklar.reduce((acc, curr) => acc + curr, 0);
+      return toplamson;
+    };
+
+    const toplamfiyatHesapla = () => {
+      const toplamson = sepetUrunler.reduce((acc, urun) => acc + (urun.fiyat * urun.adet), 0);
+      return toplamson;
+    };
+
+    const redirectToSiparis = () => {
+      // Programatik olarak yönlendirme
+      router.push('/sepet/');
+    };
+
+    return {
+      sepetUrunler,
+      toplamson: toplamAdetHesapla(),
+      totalfiyat: toplamfiyatHesapla(),
+      redirectToSiparis,
+    };
+  },
+
+
+  // other component options...
+}
+</script>
 <template>
   <div class="ustbar">
     <div class="logo">
-      <img src="assets/component 1/lumberjack logo.png">
-    </div>
+      <router-link to="/Anasayfa">
+            <img src="src/assets/component 1/lumberjack logo.png" alt="Lumberjack Logo">
+          </router-link>    </div>
     <div class="sepetimadresodeme1">
       <div class="sepetimadresodemeyazi">
         <a href="">Sepetim </a>
@@ -44,9 +95,7 @@ import { Button } from 'ant-design-vue/es';
           </div>
         </div>
         <div class="siparisozetconteiner">
-          <Sepetdetayurun />
-          <Sepetdetayurun />
-          <Sepetdetayurun />
+          <SepetDetayurun v-for="SepetDetayurun in sepetUrunler" :key="SepetDetayurun.urunKodu" :urun="SepetDetayurun" />
         </div>
       </div>
       <div class="sepetipaylasconteiner">
@@ -184,7 +233,7 @@ width: 140px;
   flex-direction: column;
   margin: 20px 20px 20px 130px;
   font-family: sans-serif, poppins;
-  width: 60%;
+  width: 65%;
 
 }
 
