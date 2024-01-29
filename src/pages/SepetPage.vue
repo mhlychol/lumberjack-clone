@@ -1,30 +1,17 @@
 <template>
   <div>
-    <h1>Ürün Detay Sayfası</h1>
-    <p>Ürün Kodu: {{ urunKodu }}</p>
-    <p>Renk: {{ renk }}</p>
-    <p>Beden: {{ beden }}</p>
+    <!-- Your other template content here -->
+    <SepetDetay></SepetDetay>
   </div>
 </template>
 
 <script lang="ts">
+import SepetDetay from 'components/SepetDetay.vue';
+
 export default {
-  data() {
-    return {
-      urunKodu: '',
-      renk: '',
-      beden: '',
-    };
+  components: {
+    SepetDetay,
   },
-  mounted() {
-    // Query parametrelerini al
-    this.urunKodu = this.$route.query.urunKodu || '';
-    this.renk = this.$route.query.renk || '';
-    this.beden = this.$route.query.beden || '';
-  },
+  // Your other script content here
 };
 </script>
-
-<style scoped>
-/* Stil kuralları buraya eklenebilir */
-</style>
