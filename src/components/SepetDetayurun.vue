@@ -1,3 +1,34 @@
+<script lang="ts">
+export default {
+
+ props: {
+    urun: {
+      type: Object,
+      required: true,
+    },
+  },
+}
+const calculateIndirimliFiyat = (fiyat, indirimOrani) => {
+  // İndirim varsa yeni fiyatı hesapla
+  if (indirimOrani !== 0) {
+    const indirimliFiyat = fiyat - (fiyat * indirimOrani) / 100;
+    return indirimliFiyat.toFixed(2); // İki ondalık basamaklı olarak göster
+  }
+  // İndirim yoksa mevcut fiyatı geri döndür
+  return fiyat;
+};
+const toplamAdetHesapla = () => {
+      const toplam = sepetUrunler.reduce((acc, urun) => acc + urun.adet, 0);
+      const basamaklar = toplam.toString().split('').map(Number);
+      const toplamson = basamaklar.reduce((acc, curr) => acc + curr, 0);
+      return toplamson;
+    };
+
+    const toplamfiyatHesapla = () => {
+      const toplamson = sepetUrunler.reduce((acc, urun) => acc + (urun.fiyat * urun.adet), 0);
+      return toplamson;
+    };
+</script>
 <template>
   <div class="siparisozetconteiner">
     <div class="siparisozet">
@@ -10,7 +41,7 @@
             <p>Lumberjack</p>
           </div>
           <div class="urunyazi">
-            <a href="">ML SPARK 17CG510 3PR Siyah Erkek Sweatshirt</a>
+            {{ urun.urunAciklamasi }}
           </div>
           <div class="urunkargosure">
             <div class="urunkargosuresol">
@@ -27,25 +58,25 @@
           Beden:
         </div>
         <div class="bedensag">
-          2XL
+          {{urun.beden}}
         </div>
       </div>
       <div class="urunsayiconteiner">
         <div class="urunsayicerceve">
           <div class="urunsayi">
-            1
+            {{urun.adet}}
           </div>
           <div class="urunsayibuton">
-            <button>+</button>
+            <button class="butonstyle">+</button>
           </div>
         </div>
       </div>
       <div class="urunfiyat">
         <div class="urunfiyateski">
-          749,99 TL
+          {{ urun.fiyat }}TL
         </div>
-        <div class="urunfiyatyeni">
-          649,99 TL
+        <div class="urunfiyatyeni" v-if="urun.indirimOrani > 0">
+          {{ calculateIndirimliFiyat(urun.fiyat, urun.indirimOrani) }}TL
         </div>
       </div>
       <div class="silbutonconteiner">
@@ -60,6 +91,14 @@
 </template>
 
   <style>
+  .butonstyle {
+border: none;
+background-color: transparent;
+  }
+  .silbutonbuton {
+border: none;
+background-color: transparent;
+  }
   .siparisozetconteiner {
 
       display: flex;
@@ -136,7 +175,7 @@
       height: 33%;
       width: 100%;
       font-size: 12px;
-
+      flex-direction: column;
   }
 
   .urunkargosuresol {
@@ -180,6 +219,7 @@
       height: 50px;
       align-items: center;
       padding-left: 25px;
+
   }
 
   .urunsayicerceve {
@@ -192,6 +232,9 @@
       font-size: 16px;
       text-align: center;
       justify-content: center;
+      align-items: center
+
+
   }
 
   .urunsayi {
