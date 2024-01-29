@@ -3,6 +3,7 @@ import { RouteRecordRaw } from 'vue-router';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
+    component: () => import('layouts/AnasayfaLayout.vue'),
     children: [
       { path: '', component: () => import('pages/AnasayfaPage.vue') },
       { path: '/Anasayfa', component: () => import('pages/AnasayfaPage.vue') },
@@ -22,7 +23,7 @@ const routes: RouteRecordRaw[] = [
     path: '/sepet/',
     component: () => import('layouts/SiparisLayout.vue'),
     children: [{ path: '', component: () => import('pages/SepetPage.vue') },
-    { path: 'siparis', component: () => import('pages/SiparisPage.vue') },
+    { path: '/siparis', component: () => import('pages/SiparisPage.vue') },
   ],
   },
   // Always leave this as last one,
