@@ -1,29 +1,40 @@
-<script>
+<script lang="ts">
+
+
 export default {
+  props: {
+    urun: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
       showRenkBeden: false,
-    }
+    };
   },
   methods: {
     toggleRenkBeden() {
-      this.showRenkBeden = !this.showRenkBeden
+      this.showRenkBeden = !this.showRenkBeden;
+    },
+    getRenkImgUrl(urunKodu, renk) {
+      return `src/assets/${urunKodu}${renk}1.webp`;
     },
   },
-}
+};
+
+
 </script>
 
 <template>
   <div class="mainconteinerurun">
     <div class="resim">
-      <img class="resimic" src="/src/assets/minisepetresim.webp">
+      <img class="resimic"  :src="getRenkImgUrl(urun.urunKodu, urun.renk)" >
     </div>
     <div class="bilgiler">
-      <div class="markamodel">
-        GALIA 3PR Beyaz Erkek Sneaker
-      </div>
+      <!-- <div class="markamodel"/> -->
       <div class="detay">
-        Detay <button class="detaybuton" @click="toggleRenkBeden">
+        {{urun.urunAciklamasi}} <button class="detaybuton" @click="toggleRenkBeden">
           <i class="fas fa-angle-down" />
         </button>
       </div>
@@ -32,20 +43,21 @@ export default {
           renk:
         </div>
         <div class="renkbedenicerik">
-          Siyah
+          {{urun.renk}}
         </div>
         <div class="renkbeden">
           beden
         </div>
         <div class="renkbedenicerik">
-          2XL
+          {{urun.beden}}
+
         </div>
       </div>
       <div class="fiyat">
-        699,99 TL
+        {{urun.fiyat}} TL
       </div>
       <div class="adetbeden">
-        ADET: 1 BEDEN: 40
+        ADET: {{urun.adet}} BEDEN: {{urun.beden}}
       </div>
     </div>
     <div class="urunusil">
@@ -76,7 +88,7 @@ export default {
     display: flex;
     flex-direction: column;
     width: 60%;
-    padding: 15px;
+    padding: 0 15px 15px 15px;
 
 }
 
@@ -119,5 +131,9 @@ export default {
   font-weight: 500;
   color: #333333;
   padding-top: 15px;
+}
+.detaybuton{
+  border: none;
+  background-color: transparent
 }
 </style>
