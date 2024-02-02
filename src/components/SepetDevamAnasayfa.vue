@@ -1,5 +1,5 @@
 <script lang="ts">
-import SepetUrun from 'src/components/SepetUrun.vue';
+import SepetUrun from 'src/components/SepetUrun.vue'; // Adjust the path accordingly
 import { useSepetStore } from 'stores/sepet';
 import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
@@ -13,7 +13,7 @@ export default {
     urunSilme(urunKodu: string, renk: string, beden: string, adet: number): void {
       const sepetStore = useSepetStore();
       sepetStore.urunSil({ urunKodu, renk, beden, adet });
-      this.$forceUpdate();
+      this.$forceUpdate(); // Eğer hala kullanmanız gerekiyorsa
     },
   },
   setup() {
@@ -61,10 +61,13 @@ export default {
   <div class="sepetmainconteiner">
 
     <div class="urunsayisi">
-      {{ toplamson }} Adet ürün sepetinizde ekli
+      Sepetinize {{ }} ürününü eklediniz.
     </div>
-    <div class="aratoplam">
-      Ara Toplam:{{ totalfiyat }} TL
+
+    <div class="sepetbutonconteiner">
+      <button class="sepetbuton">
+        ALIŞVERİŞE DEVAM ET
+      </button>
     </div>
     <div class="sepetbutonconteiner">
       <button class="sepetbuton" @click="redirectToSiparis">
@@ -90,13 +93,11 @@ export default {
   display: flex;
   flex-direction: column;
   height: auto;
-  width: 400px;
+  width: 500px;
   background-color: rgb(255, 255, 255);
   font-family: poppins, sans-serif;
   padding: 20px;
   letter-spacing: 1px;
-  border: 2px solid #c2c2c2;
-  border-radius: 1%;
 }
 
 .urunsayisi,
