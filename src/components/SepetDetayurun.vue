@@ -17,20 +17,25 @@ export default {
     };
   },
   methods: {
-    urunsartirazalt(operator, urun) {
+    urunsartirazalt(operator, urunKodu, renk, beden) {
       if (operator === '+') {
         this.productCount++;
       } else if (operator === '-' && this.productCount > 0) {
         this.productCount--;
       }
       // sepete ekleme cikarma yapcm burda
-      urun.adet = this.productCount;
-      console.log(urun.adet)
+      const yeniAdet = this.productCount;
+      sepetStore.urunAdetGuncelle({ urunKodu, renk, beden, yeniAdet });
+
     },
+
     callUrunSilme(urunkodu: string, renk: string, beden: string, adet: number) {
 
       sepetStore.urunSil({ urunKodu: urunkodu, renk: renk, beden: beden, adet: adet });
-    }
+    },
+    getRenkImgUrl(urunKodu, renk) {
+      return `src/assets/${urunKodu}${renk}1.webp`;
+    },
   },
   setup() {
     const getDeliveryDate = (): string => {
@@ -105,7 +110,7 @@ export default {
     <div class="siparisozet">
       <div class="urunozet">
         <div class="urunresmi">
-          <img src="assets/griesofman1.webp" alt="">
+          <img :src="getRenkImgUrl(urun.urunKodu, urun.renk)">
         </div>
         <div class="urunbilgi">
           <div class="urunmarka">
@@ -135,13 +140,14 @@ export default {
       <div class="urunsayiconteiner">
         <div class="urunsayicerceve">
           <div class="urunsayibuton">
-            <button class="butonstyleadet" @click="urunsartirazalt('-', urun)" v-show="productCount > 1">-</button>
+            <button class="butonstyleadet" @click="urunsartirazalt('-', urun.urunKodu, urun.renk, urun.beden)"
+              v-show="productCount > 1">-</button>
           </div>
           <div class="urunsayi">
             {{ productCount }}
           </div>
           <div class="urunsayibuton">
-            <button class="butonstyleadet" @click="urunsartirazalt('+', urun)">+</button>
+            <button class="butonstyleadet" @click="urunsartirazalt('+', urun.urunKodu, urun.renk, urun.beden)">+</button>
           </div>
         </div>
       </div>
@@ -215,7 +221,6 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 5px;
 
 }
 
