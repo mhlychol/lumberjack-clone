@@ -2,175 +2,290 @@
   "ürünler": [
     {
       "urunKodu": "ABC123",
-      "urunAciklamasi": "Nike Air Max Spor Ayakkabı, dayanıklı ve rahat, koşu ve günlük kullanım için uygun.",
+      "urunAciklamasi": "TINA 3FX Siyah Kadın Sneaker",
       "ustTur": "Ayakkabı",
       "altTur": "Sneaker",
-      "marka": "Nike",
+      "marka": "Lumberjack",
       "model": "Air Max",
       "yas": "Yetişkin",
       "cinsiyet": "Unisex",
-      "bedenler": ["36", "37", "38", "39", "40"],
-      "renk": ["Siyah", "Beyaz", "Kırmızı"],
+      "bedenler": [
+        "36",
+        "37",
+        "38",
+        "39",
+        "40"
+      ],
+      "renk": [
+        "Siyah",
+        "Beyaz"
+      ],
       "fiyat": 299.99,
       "indirimOrani": 10,
       "kargo": "Ücretsiz",
-      "kuponindirimbilgi": ["1", "2","3"],
-      "sezon":["kış"]
+      "kuponindirimbilgi": [
+        "1",
+        "2",
+        "3"
+      ],
+      "sezon": [
+        "kış"
+      ]
     },
     {
       "urunKodu": "DEF456",
-      "urunAciklamasi": "The North Face Denali Polar Ceket, soğuk hava koşullarında sıcak tutan yüksek kaliteli bir polar ceket.",
-      "ustTur": "Giyim",
-      "altTur": "Polar",
-      "marka": "The North Face",
-      "model": "Denali",
+      "urunAciklamasi": "GOKY 2FX BEYAZ Kadın Koşu Ayakkabısı",
+      "ustTur": "Ayakkabı",
+      "altTur": "Koşu",
+      "marka": "Lumberjack",
+      "model": "Spor",
       "yas": "Yetişkin",
       "cinsiyet": "Unisex",
-      "bedenler": ["S", "M", "L", "XL"],
-      "renk": ["Gri", "Siyah"],
+      "bedenler": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "renk": [
+        "Gri",
+        "Beyaz"
+      ],
       "fiyat": 149.99,
       "indirimOrani": 0,
       "kargo": "Ücretli",
-      "kuponindirimbilgi": ["1","3"],
-      "sezon":["ilkbahar"]
-
+      "kuponindirimbilgi": [
+        "1",
+        "3"
+      ],
+      "sezon": [
+        "ilkbahar"
+      ]
     },
     {
       "urunKodu": "GHI789",
-      "urunAciklamasi": "Fossil Vintage Deri Cüzdan, şık tasarımı ve dayanıklı deri malzemesi ile öne çıkan erkek cüzdanı.",
-      "ustTur": "Aksesuar",
-      "altTur": "Cüzdan",
-      "marka": "Fossil",
+      "urunAciklamasi": "LIPONIS WMN 1FX Siyah Kadın Comfort Ayakkabi",
+      "ustTur": "Ayakkabı",
+      "altTur": "Yürüyüş",
+      "marka": "Lumberjack",
       "model": "Vintage",
       "yas": "Yetişkin",
-      "cinsiyet": "Erkek",
-      "bedenler": [],
-      "renk": ["Kahverengi", "Siyah"],
+      "cinsiyet": "Kadın",
+      "bedenler": [
+        "36",
+        "37",
+        "38",
+        "39",
+        "40"
+      ],
+      "renk": [
+        "Siyah"
+      ],
       "fiyat": 79.99,
       "indirimOrani": 15,
       "kargo": "Ücretsiz",
-      "kuponindirimbilgi": ["1", "2"],
-      "sezon":["yaz"]
-
+      "kuponindirimbilgi": [
+        "1",
+        "2"
+      ],
+      "sezon": [
+        "yaz"
+      ]
     },
     {
       "urunKodu": "JKL321",
-      "urunAciklamasi": "Adidas Gazelle Kadın Sneaker, klasik tasarımı ve konforlu yapısıyla öne çıkan şık bir spor ayakkabı.",
-      "ustTur": "Ayakkabı",
-      "altTur": "Sneaker",
-      "marka": "Adidas",
+      "urunAciklamasi": "SCOTTY T-SHIRT 2FX Beyaz Kadın Kısa Kol T-Shirt",
+      "ustTur": "Giyim",
+      "altTur": "T-shirt",
+      "marka": "Lumberjack",
       "model": "Gazelle",
       "yas": "Yetişkin",
       "cinsiyet": "Kadın",
-      "bedenler": ["36", "37", "38", "39"],
-      "renk": ["Pembe", "Beyaz", "Siyah"],
+      "bedenler": [
+        "XS",
+        "S",
+        "M",
+        "L"
+      ],
+      "renk": [
+        "Beyaz"
+      ],
       "fiyat": 249.99,
       "indirimOrani": 20,
       "kargo": "Ücretsiz",
-      "kuponindirimbilgi": [ "2","3"],
-      "sezon":["sonabahar"]
+      "kuponindirimbilgi": [
+        "2",
+        "3"
+      ],
+      "sezon": [
+        "sonabahar"
+      ]
     },
     {
       "urunKodu": "MNO987",
-      "urunAciklamasi": "Puma Hoodie Erkek Sweatshirt, rahat ve şık tasarımı ile soğuk günlerde sıcak tutan bir sweatshirt.",
+      "urunAciklamasi": "ML ARON 16SD4001 3PR Siyah Erkek Sweatshirt",
       "ustTur": "Giyim",
       "altTur": "Sweatshirt",
       "marka": "Puma",
       "model": "Hoodie",
       "yas": "Yetişkin",
       "cinsiyet": "Erkek",
-      "bedenler": ["M", "L", "XL"],
-      "renk": ["Siyah", "Gri", "Mavi"],
+      "bedenler": [
+        "M",
+        "L",
+        "XL"
+      ],
+      "renk": [
+        "Siyah"
+      ],
       "fiyat": 129.99,
       "indirimOrani": 5,
       "kargo": "Ücretli",
       "kuponindirimbilgi": [],
-      "sezon":["sonabahar"]
+      "sezon": [
+        "sonabahar"
+      ]
     },
     {
       "urunKodu": "PQR654",
-      "urunAciklamasi": "Nike Air Zoom Koşu Ayakkabısı, hafif ve esnek tasarımı ile koşu performansını artıran bir ayakkabı.",
-      "ustTur": "Ayakkabı",
-      "altTur": "Koşu",
-      "marka": "Nike",
-      "model": "Air Zoom",
+      "urunAciklamasi": "LUGANO -B 3PR Siyah Unisex Büyük Boy Valiz",
+      "ustTur": "Aksesuar",
+      "altTur": "Valiz",
+      "marka": "LUGANO",
+      "model": "LUGANO",
       "yas": "Yetişkin",
       "cinsiyet": "Unisex",
-      "bedenler": ["37", "38", "39", "40"],
-      "renk": ["Mor", "Turuncu", "Siyah"],
+      "bedenler": [
+        "STD  "
+      ],
+      "renk": [
+        "Mavi",
+        "Siyah"
+      ],
       "fiyat": 199.99,
       "indirimOrani": 15,
       "kargo": "Ücretsiz",
-      "kuponindirimbilgi": ["1", "2","3"],
-      "sezon":["ilkbahar"]
+      "kuponindirimbilgi": [
+        "1",
+        "2",
+        "3"
+      ],
+      "sezon": [
+        "ilkbahar"
+      ]
     },
     {
       "urunKodu": "STU987",
-      "urunAciklamasi": "Lacoste Polo T-shirt, klasik polo tasarımı ile rahat ve şık bir görünüm sunan erkek t-shirt.",
+      "urunAciklamasi": "CT588 PELHAM T-SHIRT Beyaz Erkek Kısa Kol T-Shirt",
       "ustTur": "Giyim",
       "altTur": "T-shirt",
-      "marka": "Lacoste",
-      "model": "Polo",
+      "marka": "Lumberjack",
+      "model": "Duz",
       "yas": "Yetişkin",
       "cinsiyet": "Erkek",
-      "bedenler": ["S", "M", "L"],
-      "renk": ["Beyaz", "Lacivert", "Yeşil"],
+      "bedenler": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL"
+      ],
+      "renk": [
+        "Beyaz"
+      ],
       "fiyat": 89.99,
       "indirimOrani": 10,
       "kargo": "Ücretsiz",
-      "kuponindirimbilgi": ["3"],
-      "sezon":["sonabahar"]
+      "kuponindirimbilgi": [
+        "3"
+      ],
+      "sezon": [
+        "sonabahar"
+      ]
     },
     {
       "urunKodu": "XYZ987",
-      "urunAciklamasi": "Converse Chuck Taylor All Star Sneaker, klasik tasarımı ve rahat yapısı ile öne çıkan bir sneaker ayakkabı.",
+      "urunAciklamasi": "ERA IT 2PR Lacivert Unisex Çocuk Sneaker",
       "ustTur": "Ayakkabı",
       "altTur": "Sneaker",
       "marka": "Converse",
       "model": "Chuck Taylor All Star",
       "yas": "Çocuk",
       "cinsiyet": "Unisex",
-      "bedenler": ["28", "29", "30", "31"],
-      "renk": ["Kırmızı", "Mavi", "Sarı"],
+      "bedenler": [
+        "28",
+        "29",
+        "30",
+        "31"
+      ],
+      "renk": [
+        "Lacivert"
+      ],
       "fiyat": 79.99,
       "indirimOrani": 0,
       "kargo": "Ücretsiz",
-      "kuponindirimbilgi": ["2"],
-      "sezon":["kış"]
+      "kuponindirimbilgi": [
+        "2"
+      ],
+      "sezon": [
+        "kış"
+      ]
     },
     {
       "urunKodu": "ABC789",
-      "urunAciklamasi": "Levi's Slim Fit Kot Pantolon, modern ve şık tasarımı ile gençlerin tercihi slim fit kot pantolon.",
+      "urunAciklamasi": "KL BATMAN 22GFG323 3PR Siyah Erkek Çocuk Eşofman Altı",
       "ustTur": "Giyim",
-      "altTur": "Kot Pantolon",
+      "altTur": "Eşofman",
       "marka": "Levi's",
       "model": "Slim Fit",
-      "yas": "Genç",
+      "yas": "Yetişkin",
       "cinsiyet": "Unisex",
-      "bedenler": ["26", "28", "30", "32"],
-      "renk": ["Siyah", "Beyaz", "Mavi"],
+      "bedenler": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "renk": [
+        "Siyah",
+        "Gri"
+      ],
       "fiyat": 159.99,
       "indirimOrani": 5,
       "kargo": "Ücretli",
-      "kuponindirimbilgi": ["1"],
-      "sezon":["yaz"]
+      "kuponindirimbilgi": [
+        "1"
+      ],
+      "sezon": [
+        "yaz"
+      ]
     },
     {
       "urunKodu": "DEF321",
-      "urunAciklamasi": "Disney Prenses Elbise, küçük prensesler için tasarlanmış şık bir elbise.",
-      "ustTur": "Giyim",
-      "altTur": "Elbise",
-      "marka": "Disney",
-      "model": "Prenses Elbise",
+      "urunAciklamasi": "ERA 3FX Siyah Erkek Çocuk Sneaker",
+      "ustTur": "Ayakkabı",
+      "altTur": "Sneaker",
+      "marka": "Lumberjack",
+      "model": "Ayakkabi",
       "yas": "Çocuk",
       "cinsiyet": "Kadın",
-      "bedenler": ["4", "6", "8", "10"],
-      "renk": ["Pembe", "Mavi", "Mor"],
+      "bedenler": [
+        "31",
+        "32",
+        "33",
+        "34"
+      ],
+      "renk": [
+        "Siyah",
+        "Gri"
+      ],
       "fiyat": 49.99,
       "indirimOrani": 0,
       "kargo": "Ücretsiz",
       "kuponindirimbilgi": [],
-      "sezon":["sonabahar"]
+      "sezon": [
+        "sonabahar"
+      ]
     },
     {
       "urunKodu": "GHI654",
@@ -181,13 +296,27 @@
       "model": "Spider-Man",
       "yas": "Çocuk",
       "cinsiyet": "Erkek",
-      "bedenler": ["6", "8", "10", "12"],
-      "renk": ["Kırmızı", "Mavi", "Siyah"],
+      "bedenler": [
+        "6",
+        "8",
+        "10",
+        "12"
+      ],
+      "renk": [
+        "Kırmızı",
+        "Mavi",
+        "Siyah"
+      ],
       "fiyat": 29.99,
       "indirimOrani": 0,
       "kargo": "Ücretsiz",
-      "kuponindirimbilgi": ["1", "2"],
-      "sezon":["ilkbahar"]
+      "kuponindirimbilgi": [
+        "1",
+        "2"
+      ],
+      "sezon": [
+        "ilkbahar"
+      ]
     },
     {
       "urunKodu": "MNO123",
@@ -198,30 +327,54 @@
       "model": "Kids Runner",
       "yas": "Çocuk",
       "cinsiyet": "Unisex",
-      "bedenler": ["24", "25", "26", "27"],
-      "renk": ["Turuncu", "Yeşil", "Pembe"],
+      "bedenler": [
+        "24",
+        "25",
+        "26",
+        "27"
+      ],
+      "renk": [
+        "Turuncu",
+        "Yeşil",
+        "Pembe"
+      ],
       "fiyat": 89.99,
       "indirimOrani": 5,
       "kargo": "Ücretsiz",
-      "kuponindirimbilgi": ["1"],
-      "sezon":["sonabahar"]
+      "kuponindirimbilgi": [
+        "1"
+      ],
+      "sezon": [
+        "sonabahar"
+      ]
     },
     {
       "urunKodu": "PQR987",
-      "urunAciklamasi": "Tommy Hilfiger Kadın Sweatshirt, şıklığı ve rahatlığı bir araya getiren kışlık bir sweatshirt.",
+      "urunAciklamasi": "SN119 MARTA SLOGAN SWEATS Siyah Kadın Sweatshirt",
       "ustTur": "Giyim",
       "altTur": "Sweatshirt",
-      "marka": "Tommy Hilfiger",
+      "marka": "Lumberjack",
       "model": "Essential",
       "yas": "Yetişkin",
       "cinsiyet": "Kadın",
-      "bedenler": ["S", "M", "L"],
-      "renk": ["Bordo", "Gri", "Beyaz"],
+      "bedenler": [
+        "S",
+        "M",
+        "L"
+      ],
+      "renk": [
+        "Siyah"
+      ],
       "fiyat": 179.99,
       "indirimOrani": 10,
       "kargo": "Ücretsiz",
-      "kuponindirimbilgi": ["1","3"],
-      "sezon":["kış"]
+      "kuponindirimbilgi": [
+        "1",
+        "3"
+      ],
+      "sezon": [
+        "kış"
+      ]
     },
     {
       "urunKodu": "STU321",
@@ -233,12 +386,18 @@
       "yas": "Çocuk",
       "cinsiyet": "Unisex",
       "bedenler": [],
-      "renk": ["Çeşitli Renkler"],
+      "renk": [
+        "Çeşitli Renkler"
+      ],
       "fiyat": 129.99,
       "indirimOrani": 0,
       "kargo": "Ücretli",
-      "kuponindirimbilgi": ["3"],
-      "sezon":["sonabahar"]
+      "kuponindirimbilgi": [
+        "3"
+      ],
+      "sezon": [
+        "sonabahar"
+      ]
     },
     {
       "urunKodu": "ABC987",
@@ -249,13 +408,22 @@
       "model": "Authentic",
       "yas": "Yetişkin",
       "cinsiyet": "Unisex",
-      "bedenler": ["37", "38", "39", "40"],
-      "renk": ["Siyah", "Beyaz", "Mavi"],
+      "bedenler": [
+        "37",
+        "38",
+        "39",
+        "40"
+      ],
+      "renk": [
+        "Haki"
+      ],
       "fiyat": 159.99,
       "indirimOrani": 5,
       "kargo": "Ücretsiz",
       "kuponindirimbilgi": [],
-      "sezon":["yaz"]
+      "sezon": [
+        "yaz"
+      ]
     },
     {
       "urunKodu": "XYZ321",
@@ -266,14 +434,25 @@
       "model": "Frozen",
       "yas": "Çocuk",
       "cinsiyet": "Kadın",
-      "bedenler": ["4", "6", "8", "10"],
-      "renk": ["Mavi", "Pembe"],
+      "bedenler": [
+        "4",
+        "6",
+        "8",
+        "10"
+      ],
+      "renk": [
+        "Mavi",
+        "Pembe"
+      ],
       "fiyat": 69.99,
       "indirimOrani": 0,
       "kargo": "Ücretsiz",
-      "kuponindirimbilgi": ["1"],
-      "sezon":["yaz"]
-
+      "kuponindirimbilgi": [
+        "1"
+      ],
+      "sezon": [
+        "yaz"
+      ]
     },
     {
       "urunKodu": "GHI321",
@@ -284,13 +463,26 @@
       "model": "Kids Walk",
       "yas": "Çocuk",
       "cinsiyet": "Unisex",
-      "bedenler": ["28", "29", "30", "31"],
-      "renk": ["Turuncu", "Sarı", "Mavi"],
+      "bedenler": [
+        "28",
+        "29",
+        "30",
+        "31"
+      ],
+      "renk": [
+        "Turuncu",
+        "Sarı",
+        "Mavi"
+      ],
       "fiyat": 109.99,
       "indirimOrani": 10,
       "kargo": "Ücretli",
-      "kuponindirimbilgi": ["3"],
-      "sezon":["sonabahar"]
+      "kuponindirimbilgi": [
+        "3"
+      ],
+      "sezon": [
+        "sonabahar"
+      ]
     },
     {
       "urunKodu": "MNO321",
@@ -301,30 +493,60 @@
       "model": "Kids Softshell",
       "yas": "Çocuk",
       "cinsiyet": "Unisex",
-      "bedenler": ["6", "8", "10", "12"],
-      "renk": ["Siyah", "Kırmızı", "Mavi"],
+      "bedenler": [
+        "6",
+        "8",
+        "10",
+        "12"
+      ],
+      "renk": [
+        "Siyah",
+        "Kırmızı",
+        "Mavi"
+      ],
       "fiyat": 129.99,
       "indirimOrani": 5,
       "kargo": "Ücretsiz",
-      "kuponindirimbilgi": ["1", "2"],
-      "sezon":["kış","sonabahar"]
+      "kuponindirimbilgi": [
+        "1",
+        "2"
+      ],
+      "sezon": [
+        "kış",
+        "sonabahar"
+      ]
     },
     {
       "urunKodu": "PQR321",
-      "urunAciklamasi": "Adidas Unisex Şort, rahat tasarımı ile sıcak günlerde spor yapmak için ideal bir şort.",
+      "urunAciklamasi": "M-ADALWOLF COAT 2PR PASTEL HAKI Erkek Kısa Kaban",
       "ustTur": "Giyim",
-      "altTur": "Şort",
+      "altTur": "Mont",
       "marka": "Adidas",
       "model": "Performance",
       "yas": "Yetişkin",
       "cinsiyet": "Unisex",
-      "bedenler": ["S", "M", "L"],
-      "renk": ["Siyah", "Beyaz", "Gri"],
+      "bedenler": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL"
+      ],
+      "renk": [
+        "Haki",
+        "Siyah"
+      ],
       "fiyat": 59.99,
       "indirimOrani": 0,
       "kargo": "Ücretli",
-      "kuponindirimbilgi": ["1","3"],
-      "sezon":["yaz","ilkbahar"]
+      "kuponindirimbilgi": [
+        "1",
+        "3"
+      ],
+      "sezon": [
+        "yaz",
+        "ilkbahar"
+      ]
     }
   ]
 }
