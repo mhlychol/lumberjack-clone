@@ -13,7 +13,6 @@ export default {
     const sepetStore = useSepetStore();
     const sepetUrunler = sepetStore.sepetUrunleri;
     const router = useRouter();
-
     onMounted(() => {
       sepetStore.getFirebaseToSepet();
     });
@@ -27,9 +26,19 @@ export default {
       return toplamson;
     };
 
+    const kargotoplam = () => {
+      const toplamkargo = toplamfiyatHesapla()
+      if (toplamkargo > 300) {
+        return toplamkargo;
+      } else {
+        return parseFloat((toplamkargo + 49.99).toFixed(2));
+
+      }
+    };
+
     const toplamfiyatHesapla = () => {
-      const toplamson = sepetUrunler.reduce((acc, urun) => acc + (urun.fiyat * urun.adet), 0);
-      return toplamson;
+      const toplamson = sepetUrunler.reduce((acc, urun) => acc + (urun.fiyat * ((100 - urun.indirimOrani) / 100) * urun.adet), 0);
+      return parseFloat(toplamson.toFixed(2));
     };
 
     const redirectToSiparis = () => {
@@ -42,6 +51,7 @@ export default {
       toplamson: toplamAdetHesapla(),
       totalfiyat: toplamfiyatHesapla(),
       redirectToSiparis,
+      kargolufiyat: kargotoplam(),
     };
   },
 
@@ -53,8 +63,9 @@ export default {
   <div class="ustbar">
     <div class="logo">
       <router-link to="/Anasayfa">
-            <img src="src/assets/component 1/lumberjack logo.png" alt="Lumberjack Logo">
-          </router-link>    </div>
+        <img src="src/assets/component 1/lumberjack logo.png" alt="Lumberjack Logo">
+      </router-link>
+    </div>
     <div class="sepetimadresodeme1">
       <div class="sepetimadresodemeyazi">
         <a href="">Sepetim </a>
@@ -78,7 +89,7 @@ export default {
   <div class="conteiner">
     <div class="govdeconteiner">
       <div class="sepetimurunsayisi">
-        Sepetim (3 Ürün)
+        Sepetim ({{ toplamson }} Ürün)
       </div>
       <div class="ürünlersiparisozet">
         <div class="urunlerkargo">
@@ -124,7 +135,7 @@ export default {
             Ürünler
           </div>
           <div class="urunlertopsag">
-            ₺1.349,98 TL
+            {{ totalfiyat }} TL
           </div>
         </div>
         <div class="siparisozetrow2">
@@ -132,11 +143,12 @@ export default {
             Kargo
           </div>
           <div class="siparisozetrow3">
-            <div class="kargotopsagucretsiz">
+            <div class="kargotopsagucretsiz" v-if="totalfiyat > 300">
               Ücretsiz
             </div>
-            <div class="kargotopsagucret">
-              ₺39,99 TL
+            <div class="kargotopsagucret"
+              :style="{ 'text-decoration': totalfiyat > 300 ? 'line-through' : 'none', color: totalfiyat > 300 ? '#afafaf' : 'black' }">
+              ₺49,99 TL
             </div>
           </div>
         </div>
@@ -145,7 +157,7 @@ export default {
             Toplam
           </div>
           <div class="toplamsag">
-            ₺1.349,98 TL
+            {{ kargolufiyat }} TL
           </div>
         </div>
         <Button class="sepetionaylabuton">
@@ -165,6 +177,10 @@ export default {
 </template>
 
 <style>
+.sepetionaylabuton:hover {
+  cursor: pointer;
+}
+
 .ustbar {
   display: flex;
   flex-direction: row;
@@ -188,26 +204,27 @@ export default {
   align-items: center;
 }
 
-.sepetimadresodemeyazi{
+.sepetimadresodemeyazi {
   padding: 5px;
   align-items: center;
   display: flex;
   color: white;
 }
-.sepetimadresodemeyazi a{
+
+.sepetimadresodemeyazi a {
   color: white;
 
 }
 
 .sepetimadresodemecizgi {
   display: flex;
-justify-content: center;
+  justify-content: center;
   font-weight: 300;
   align-items: center;
   margin: auto;
   transform: scaleX(2);
-width: 140px;
-    letter-spacing: 4px;
+  width: 140px;
+  letter-spacing: 4px;
 }
 
 .guvenlialisverisodeme {
@@ -398,7 +415,8 @@ width: 140px;
 
 }
 
-.siparisozetitopsag {  font-size: 14px;
+.siparisozetitopsag {
+  font-size: 14px;
   font-family: sans-serif;
   font-weight: 400;
 }
@@ -417,11 +435,11 @@ width: 140px;
 
 .kargotopsagucretsiz {
   color: rgb(43, 147, 43);
-  padding-right:5px ;
+  padding-right: 5px;
 }
 
-.kargotopsagucret {      text-decoration: line-through;
-  color: #afafaf;
+.kargotopsagucret {
+  font-size: 14px;
 }
 
 .toplamsol {
