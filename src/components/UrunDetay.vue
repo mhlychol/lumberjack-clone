@@ -1,7 +1,6 @@
 <script lang="ts">
 import { ref, onMounted, computed } from 'vue';
 import SepetDevamAnasayfa from 'src/components/SepetDevamAnasayfa.vue';
-import TheSepet from 'src/components/TheSepet.vue';
 
 import { useProductStore } from 'stores/products';
 const productStore = useProductStore();
@@ -11,7 +10,7 @@ import { useSepetStore } from 'stores/sepet';
 
 export default {
   components: {
-    SepetDevamAnasayfa,
+    // SepetDevamAnasayfa,
     // TheSepet,
   },
   data() {
@@ -114,7 +113,7 @@ export default {
 </script>
 
 <template>
-  <div class="overlay" v-if="showSepet"></div>
+  <!--  <div class="overlay" v-if="showSepet"></div>
 
   <div v-if="showSepet" class="AcilirSepetDevam">
     <div class="closewindows" @click="togglesepetackapa">
@@ -123,7 +122,7 @@ export default {
     <div class="sepetdevamacilirr">
       <SepetDevamAnasayfa />
     </div>
-  </div>
+  </div> -->
   <div class="selectedProduct">
 
   </div>
@@ -225,9 +224,14 @@ export default {
       </div>
     </div>
   </div>
+  <div class="boslukurundetay"></div>
 </template>
 
 <style>
+.boslukurundetay {
+  height: 200px;
+}
+
 .Urundetayrenkresim,
 .Urundetaybeden,
 .Urundetaysepetekle,
@@ -276,7 +280,6 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;
-  padding: 20px;
   border: 1px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   width: 500px;
