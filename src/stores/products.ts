@@ -21,23 +21,6 @@ interface Product {
   sezon: string[];
 }
 
-interface SepetProduct {
-  urunKodu: string;
-  urunAciklamasi: string;
-  ustTur: string;
-  altTur: string;
-  marka: string;
-  model: string;
-  yas: string;
-  cinsiyet: string;
-  bedenler: string[];
-  renk: string[];
-  fiyat: number;
-  indirimOrani: number;
-  kargo: string;
-  kuponindirimbilgi: string[];
-  sezon: string[];
-}
 export const useProductStore = defineStore({
   id: 'products',
   state: () => ({
