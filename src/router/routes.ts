@@ -24,6 +24,8 @@ const routes: RouteRecordRaw[] = [
     component: () => import('layouts/SiparisLayout.vue'),
     children: [{ path: '', component: () => import('pages/SepetPage.vue') },
     { path: '/siparis', component: () => import('pages/SiparisPage.vue') },
+   // { path: '/Anasayfa', component: () => import('layouts/AnasayfaLayout.vue') },
+
   ],
   },
   // Always leave this as last one,
