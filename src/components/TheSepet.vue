@@ -8,7 +8,14 @@ export default {
   components: {
     SepetUrun,
   },
+  methods: {
 
+    urunSilme(urunKodu: string, renk: string, beden: string, adet: number): void {
+      const sepetStore = useSepetStore();
+      sepetStore.urunSil({ urunKodu, renk, beden, adet });
+      this.$forceUpdate(); // Eğer hala kullanmanız gerekiyorsa
+    },
+  },
   setup() {
     const sepetStore = useSepetStore();
     const sepetUrunler = sepetStore.sepetUrunleri;
@@ -18,7 +25,7 @@ export default {
       sepetStore.getFirebaseToSepet();
     });
 
-    console.log('sepeturunleri', sepetUrunler.values); // Log the data to the console
+    console.log('sepeturunleri', sepetUrunler.values);
 
     const toplamAdetHesapla = () => {
       const toplam = sepetUrunler.reduce((acc, urun) => acc + urun.adet, 0);
@@ -28,14 +35,14 @@ export default {
     };
 
     const toplamfiyatHesapla = () => {
-      const toplamson = sepetUrunler.reduce((acc, urun) => acc + (urun.fiyat * urun.adet), 0);
-      return toplamson;
+      const toplamson = sepetUrunler.reduce((acc, urun) => acc + (urun.fiyat * ((100 - urun.indirimOrani) / 100) * urun.adet), 0);
+      return parseFloat(toplamson.toFixed(2));
     };
 
     const redirectToSiparis = () => {
-      // Programatik olarak yönlendirme
       router.push('/sepet/');
     };
+
 
     return {
       sepetUrunler,
@@ -61,11 +68,11 @@ export default {
     </div>
     <div class="sepetbutonconteiner">
       <button class="sepetbuton" @click="redirectToSiparis">
-          SEPETE GİT
+        SEPETE GİT
       </button>
     </div>
-    <div style="background-color: gray; height: 1px;" />
-    <div>
+    <div style="background-color: gray; height: 1px; margin-bottom: 5px;" />
+    <div style="max-height: 300px; overflow-y: auto;">
       <SepetUrun v-for="sepeturun in sepetUrunler" :key="sepeturun.urunKodu" :urun="sepeturun" />
     </div>
     <div style="background-color: gray; height: 1px;" />
@@ -73,6 +80,12 @@ export default {
 </template>
 
 <style>
+.sepetbuton:hover {
+
+  cursor: pointer;
+
+}
+
 .sepetmainconteiner {
   display: flex;
   flex-direction: column;
