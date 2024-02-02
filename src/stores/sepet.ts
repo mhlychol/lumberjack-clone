@@ -72,6 +72,17 @@ export const useSepetStore = defineStore(
         await this.pushStoreToFirebase();
       },
 
+      async urunAdetGuncelle({ urunKodu, renk, beden, yeniAdet }: { urunKodu: string; renk: string; beden: string; yeniAdet: number }) {
+        const existingUrun = this.sepetUrunleri.find((item) => {
+          return item.urunKodu === urunKodu && item.renk === renk && item.beden === beden;
+        });
+
+        if (existingUrun) {
+          existingUrun.adet = yeniAdet;
+        }
+
+        await this.pushStoreToFirebase();
+      },
 
       isUrunExists({ urunKodu, renk, beden }: { urunKodu: string; renk: string; beden: string }): boolean {
         return this.sepetUrunleri.some((item) => {
