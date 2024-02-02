@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="button-group">
+    <!-- <div class="button-group">
       <button @click="setGridColumn(2)">2 Kolon</button>
       <button @click="setGridColumn(3)">3 Kolon</button>
       <button @click="setGridColumn(4)">4 Kolon</button>
@@ -9,7 +9,7 @@
       <p>{{ $route.query.yas }}/{{ $route.query.cinsiyet }}/ {{ $route.query.ustTur }}/{{ $route.query.altTur }}</p>
     </div>
     <button @click="fetchProducts">Verileri Çek</button>
-    <button @click="applyFilter">filtrele</button>
+    <button @click="applyFilter">filtrele</button> -->
 
     <div class="urun-grid" :style="{ gridTemplateColumns: `repeat(${gridColumn}, 1fr)` }">
       <TheUrun v-for="product in filteredProducts" :key="product.urunKodu" :product="product" />
@@ -32,9 +32,9 @@ const setGridColumn = (columns: number) => {
   gridColumn.value = columns;
 };
 const yas = useRoute().query.yas || null;
-const cinsiyet = useRoute().query.cinsiyet|| null ;
+const cinsiyet = useRoute().query.cinsiyet || null;
 const ustTur = useRoute().query.ustTur || null;
-const altTur = useRoute().query.altTur|| null;
+const altTur = useRoute().query.altTur || null;
 
 const applyFilter = () => {
 
@@ -50,6 +50,7 @@ const fetchProducts = async () => {
 };
 
 onMounted(() => {
+
   fetchProducts();
   applyFilter();
 });
