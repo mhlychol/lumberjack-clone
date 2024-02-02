@@ -49,11 +49,11 @@ const imageClicked = () => {
   switch (data.value.currentIndex) {
     case 0:
       // Redirect to the "Urunler" page when the first image is clicked
-      router.push('Urunsec');
+      // router.push('Urunsec');
       break;
     case 1:
       // Redirect to the "Ayakkabi" page when the second image is clicked
-      router.push('Urunler');
+      //router.push('Urunler');
       break;
     // Add more cases if you have more images
     default:
