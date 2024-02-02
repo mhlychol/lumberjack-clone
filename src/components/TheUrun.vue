@@ -1,28 +1,26 @@
 <script setup lang="ts">
-import { defineProps,ref } from 'vue';
+import { defineProps, ref } from 'vue';
 import { useProductStore } from 'stores/products';
 
- //const selectedRenkIndex = ref(0); // Başlangıçta seçili olan renk index'i
- const lastSelectedRenkIndex1 = ref(0);
- import { useRouter} from 'vue-router';
+const lastSelectedRenkIndex1 = ref(0);
+import { useRouter } from 'vue-router';
 
 const props = defineProps(['product']);
 const calculateIndirimliFiyat = (fiyat, indirimOrani) => {
-  // İndirim varsa yeni fiyatı hesapla
+
   if (indirimOrani !== 0) {
     const indirimliFiyat = fiyat - (fiyat * indirimOrani) / 100;
-    return indirimliFiyat.toFixed(2); // İki ondalık basamaklı olarak göster
+    return indirimliFiyat.toFixed(2);
   }
-  // İndirim yoksa mevcut fiyatı geri döndür
+
   return fiyat;
 };
 const getStyleForEskiFiyat = (indirimOrani) => {
-  // Eğer indirim oranı 0 değilse belirtilen stil özelliklerini uygula
   return indirimOrani !== 0
     ? {
-        color: 'rgb(136, 136, 136)',
-        'text-decoration': 'line-through',
-      }
+      color: 'rgb(136, 136, 136)',
+      'text-decoration': 'line-through',
+    }
     : {};
 
 };
@@ -43,16 +41,16 @@ const handleMouseOver = (index: number): void => {
 const router = useRouter();
 const productStore = useProductStore();
 
-const handleImageClick = function() {
+const handleImageClick = function () {
 
   const selectedProduct = props.product;
   const selectedRenkIndex = props.product.renk[lastSelectedRenkIndex1.value];
-console.log(selectedProduct),
-console.log(selectedRenkIndex),
-productStore.setSelectedProduct(selectedProduct);
-productStore.setSelectedRenk(selectedRenkIndex);
+  console.log(selectedProduct),
+    console.log(selectedRenkIndex),
+    productStore.setSelectedProduct(selectedProduct);
+  productStore.setSelectedRenk(selectedRenkIndex);
 
-router.push('/Urundetay');
+  router.push('/Urundetay');
 
 
 };
@@ -67,11 +65,11 @@ router.push('/Urundetay');
           <img src="assets/kupon.webp" alt="">
         </div>
         <div class="resimurun" @click="handleImageClick()">
-          <img class="imgresim" :src="getImgUrl(product)" >
+          <img class="imgresim" :src="getImgUrl(product)">
         </div>
       </div>
       <div class="kargoindirimdurum">
-        <div class="indirimdurum"  v-if="product.indirimOrani > 0">
+        <div class="indirimdurum" v-if="product.indirimOrani > 0">
           -{{ product.indirimOrani }}%
         </div>
         <div class="kargodurum" v-if="product.kargo === 'Ücretsiz'">
@@ -106,7 +104,7 @@ router.push('/Urundetay');
       </div>
     </div>
 
-    </div>
+  </div>
 </template>
 
 <style>
@@ -130,12 +128,15 @@ router.push('/Urundetay');
 
   width: 100%;
 }
-.resimurun{
+
+.resimurun {
   width: 100%;
 }
-.icresim{
+
+.icresim {
   width: 100%;
 }
+
 .imgresim {
   height: 100%;
   width: 100%;
@@ -184,6 +185,7 @@ router.push('/Urundetay');
   display: flex;
   flex-direction: column;
   letter-spacing: 1px;
+  padding-top: 10px;
 }
 
 .fiyatyazi {
@@ -228,8 +230,8 @@ router.push('/Urundetay');
 
 .renkresim {
   height: 70px;
-    width: 45px;
-    padding: 0px
+  width: 45px;
+  padding: 0px
 }
 
 .seciliitem {
