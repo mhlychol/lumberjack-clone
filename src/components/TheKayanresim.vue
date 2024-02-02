@@ -60,6 +60,10 @@ const imageClicked = () => {
       break;
   }
 };
+
+
+
+
 </script>
 
 <template>
