@@ -11,12 +11,6 @@ const productStore = useProductStore();
 const sepetStore = useSepetStore();
 
 
-import AnasayfaLayout from './layouts/AnasayfaLayout.vue';
-import DenemePage from './pages/DenemePage.vue';
-import SepetFirebaseDeneme from './pages/SepetFirebaseDeneme.vue';
-import TheSepet from './components/TheSepet.vue';
-//import UrunListePage from './pages/UrunListePage.vue';
-import SepetDetay from './components/SepetDetay.vue';
 
 
 
