@@ -1,6 +1,8 @@
 <script lang="ts">
-import { ref, onMounted ,computed } from 'vue';
-//import { sepeteEkle, fetchSepetUrunleri } from 'boot/firebase';
+import { ref, onMounted, computed } from 'vue';
+import SepetDevamAnasayfa from 'src/components/SepetDevamAnasayfa.vue';
+import TheSepet from 'src/components/TheSepet.vue';
+
 import { useProductStore } from 'stores/products';
 const productStore = useProductStore();
 import { useSepetStore } from 'stores/sepet';
@@ -8,9 +10,28 @@ import { useSepetStore } from 'stores/sepet';
 
 
 export default {
-
+  components: {
+    SepetDevamAnasayfa,
+    // TheSepet,
+  },
+  data() {
+    return {
+      showSepet: false,
+    };
+  },
+  methods: {
+    togglesepetackapa(): void {
+      this.showSepet = !this.showSepet
+    },
+    sepeteekle(urunKodu, urunAciklamasi, renk, beden, fiyat, indirimOrani) {
+      const adet = 1;
+      const sepetStore = useSepetStore();
+      sepetStore.urunEkle({ urunKodu, urunAciklamasi, renk, beden, adet, fiyat, indirimOrani });
+      this.togglesepetackapa();
+    },
+  },
   setup() {
-    const sepetStore = useSepetStore();
+    // const sepetStore = useSepetStore();
 
     const lastSelectedRenkIndex = ref(0);
     const selectedBedenIndex = ref(3);
@@ -43,7 +64,7 @@ export default {
       const formattedDate3 = deliveryDate3.toLocaleDateString('tr-TR', options);
       const formattedDate6 = deliveryDate6.toLocaleDateString('tr-TR', options);
 
-      return `${formattedDate3.slice(0, -4)}- ${formattedDate6}`;
+      return `${formattedDate3.slice(0, 2)}- ${formattedDate6}`;
     };
 
     const getRenkImgUrl = (urunKodu: string, renk: string): string => {
@@ -62,10 +83,11 @@ export default {
       selectedBedenIndex.value = index;
     };
 
-    const sepeteekle = async (urunKodu,urunAciklamasi, renk, beden,  fiyat, indirimOrani): Promise<void> => {
-      sepetStore.urunEkle({ urunKodu,urunAciklamasi, renk, beden, adet:1, fiyat, indirimOrani})
-
-     };
+    // const sepeteekle = async (urunKodu, urunAciklamasi, renk, beden, fiyat, indirimOrani): Promise<void> => {
+    //   const adet = 1;
+    //   sepetStore.urunEkle({ urunKodu, urunAciklamasi, renk, beden, adet, fiyat, indirimOrani })
+    //   togglesepetackapa();
+    // };
 
     onMounted(() => {
       // fetchSepetUrunleri();
@@ -81,15 +103,27 @@ export default {
       handleMouseOverbeden,
       getImgUrl,
       getDeliveryDate,
-      sepeteekle,
+      // sepeteekle,
       selectedProduct,
-      selectedRenk
+      selectedRenk,
+      // togglesepetackapa,
+
     };
   },
 };
 </script>
 
 <template>
+  <div class="overlay" v-if="showSepet"></div>
+
+  <div v-if="showSepet" class="AcilirSepetDevam">
+    <div class="closewindows" @click="togglesepetackapa">
+      <i class="fa fa-times" />
+    </div>
+    <div class="sepetdevamacilirr">
+      <SepetDevamAnasayfa />
+    </div>
+  </div>
   <div class="selectedProduct">
 
   </div>
@@ -175,7 +209,7 @@ export default {
             </div>
           </div>
           <button class="Urundetaysepetekle"
-            @click="sepeteekle(selectedProduct.urunKodu,selectedProduct.urunAciklamasi, selectedProduct.renk[lastSelectedRenkIndex], selectedProduct.bedenler[selectedBedenIndex],selectedProduct.fiyat, selectedProduct.indirimOrani)">
+            @click="sepeteekle(selectedProduct.urunKodu, selectedProduct.urunAciklamasi, selectedProduct.renk[lastSelectedRenkIndex], selectedProduct.bedenler[selectedBedenIndex], selectedProduct.fiyat, selectedProduct.indirimOrani)">
             SEPETE EKLE
           </button>
           <div class="sepetaltigizli">
@@ -194,6 +228,62 @@ export default {
 </template>
 
 <style>
+.Urundetayrenkresim,
+.Urundetaybeden,
+.Urundetaysepetekle,
+.closewindows {
+  cursor: pointer;
+}
+
+.closewindows {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  background-color: transparent;
+  right: 0;
+  top: 0px;
+  z-index: 1;
+  text-align: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 600;
+  color: gray;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  background-color: rgba(91, 91, 91, 0.7);
+  width: 10000px;
+  height: 10000px;
+  z-index: 1;
+}
+
+.popup.active,
+.overlay.active {
+  display: block;
+}
+
+.sepetdevamacilirr {
+
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.AcilirSepetDevam {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 500px;
+  height: 500px;
+  z-index: 1000;
+}
+
 .selectedProduct {
   height: 55px;
 }
