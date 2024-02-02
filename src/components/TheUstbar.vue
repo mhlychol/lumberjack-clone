@@ -1,9 +1,14 @@
 <script lang="ts">
 import TheSepet from 'src/components/TheSepet.vue'
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import { useSepetStore } from 'stores/sepet';
+
 
 
 export default {
+
+
+
   name: 'TheBolum',
   components: {
     TheSepet,
@@ -20,10 +25,10 @@ export default {
     togglesepetackapa(): void {
       this.showSepet = !this.showSepet
     },
-    applyAndGoFilters(yas, cinsiyet, ustTur, altTur)  {
+    applyAndGoFilters(yas, cinsiyet, ustTur, altTur) {
       this.$router.push({
         path: '/Urunler',
-      query: {yas, cinsiyet, ustTur, altTur}
+        query: { yas, cinsiyet, ustTur, altTur }
       });
     }
   },
@@ -38,12 +43,25 @@ export default {
       isSubMenuVisible.value = false;
     };
 
+    onMounted(() => {
+      sepetStore.getFirebaseToSepet();
+    });
 
+    const sepetStore = useSepetStore();
+    const sepetUrunler = sepetStore.sepetUrunleri;
+
+    const toplamAdetHesapla = () => {
+      const toplam = sepetUrunler.reduce((acc, urun) => acc + urun.adet, 0);
+      const basamaklar = toplam.toString().split('').map(Number);
+      const toplamson = basamaklar.reduce((acc, curr) => acc + curr, 0);
+      return toplamson;
+    };
 
     return {
       isSubMenuVisible,
       showSubMenu,
       hideSubMenu,
+      totaladet: toplamAdetHesapla(),
     };
   },
 }
@@ -366,7 +384,7 @@ export default {
           <div class="sepet" @click="togglesepetackapa">
             <i class="fas fa-shopping-bag" />
             <div class="sepeturunsayisi">
-              2
+              {{ totaladet }}
             </div>
           </div>
         </div>
@@ -628,7 +646,8 @@ button::after {
   height: 30px;
   width: 30px;
   object-fit: cover;
-
+  padding-right: 15px;
+  padding-top: 5px;
 }
 
 .arama i {
@@ -707,6 +726,7 @@ button::after {
 }
 
 .arama:hover,
+.closewindow,
 .sepet:hover {
   cursor: pointer;
 }
